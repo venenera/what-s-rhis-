@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <math.h>
+#include <locale.h>
+
+int main()
+static void Main(string[] args);
+{
+    int a, b, c;
+    float S;
+    double D;
+
+    setlocale(LC_ALL, "Russian");
+
+    scanf("%i %i %i", &a, &b, &c);
+
+    S = pow((a++ - -(sqrt(b)) * c), 2);
+    printf("%f\n", S);
+
+    D = (double)a / b;
+    printf("%f", D);
+
+    return 0;
+}
