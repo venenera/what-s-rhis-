@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+   int i=0, j, min, buf;
+   int M[] = {-12, 78, 0, 5, -4, 4, 19};
+   int N = sizeof (M) / sizeof (int);
+   while (i < N - 1) {
+        j = i + 1;
+        min = i; 
+        while (j < N) {
+            if (M[j] < M[min])
+                min = j;
+                j++;
+        }
+        buf = M[i];
+        M[i] = M[min];
+        M[min] = buf;
+        i++;
+    }
+    // проверка - вывод значений элементов массива
+    for (j=0; j<N; j++) {
+    printf("%d ", M[j]);
+    }
+    return 0;
+}
