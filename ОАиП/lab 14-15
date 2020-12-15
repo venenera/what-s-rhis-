@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main()
+{
+    int i=1, j=2, buf;
+    int M[] = { 45, 7, -9, -34, 0, 2};
+    int N = sizeof(M)/sizeof(int);
+    
+    while (i < N) {
+        if (M[i-1] > M[i]) {
+            buf = M[i];
+            M[i] = M [i-1];
+            M[i-1] = buf;
+            i--;
+            if (i > 0) continue;
+        }
+        i = j++;
+    }
+    for(i = 0; i < N; i++)
+    printf("%d ", M[i]);
+    return 0;
+}
