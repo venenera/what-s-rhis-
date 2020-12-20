@@ -1,0 +1,33 @@
+#include <stdio.h>
+void qsort (int *M, int b, int e) {
+    if (b<e) {
+        int buf, l = b, r = e, piv = M[(b + e) / 2];
+        do {
+            while (M[l] < piv)
+            l++;
+            while (M[r] > piv)
+            r--;
+            if (l <= r) {
+                int buf = M[l];
+                M[l] = M[r];
+                M[r] = buf;
+                l++;
+                r--;
+            }
+        } while (l <= r);
+        qsort(M, b, r);
+        qsort(M, l, e);
+    }
+}
+int main()
+{
+    int M[] = { 4, 6, -6, 3, 0, -12};
+    int N = sizeof(M) / sizeof(int);
+    qsort(M, 0, N-1);
+    
+    //проверка - вывод массива на экран
+    for(int i = 0; i < N; i++)
+    printf ("%d ", M[i]);
+    
+    return 0;
+}
