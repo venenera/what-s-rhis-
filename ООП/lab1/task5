@@ -5,9 +5,9 @@
 #include <cctype>
 using namespace std;
 int main() { 
-    char W;
+    char word;
     cout << "Введите букву ";
-    cin >> W;
-    cout << islower(W) << endl;
+    cin >> word;
+    cout << islower(word) << endl;
     return 0; 
    } 
