@@ -1,0 +1,15 @@
+//биржевый торг
+#include <iostream>
+#include <cctype>
+using namespace std;
+int main() { 
+    float amountInDollars;
+    cout << "Введите сумму в долларах ";
+    cin >> amountInDollars;
+    cout << "Данная сумма эквивалентна следующим:" << endl
+    << amountInDollars/1.487 << " фунт стерлингов" << endl
+    << amountInDollars/0.172 << " франк" << endl
+    << amountInDollars/0.584 << " немецкая марка" << endl
+    << amountInDollars/0.00955 << " японская йена" << endl;
+    return 0; 
+} 
