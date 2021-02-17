@@ -1,0 +1,19 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main()
+{
+    const float poundsToShilling = 20.0f, 
+    shillingToPennies = 12.0f,
+    poundsToPennies = poundsToShilling * shillingToPennies;
+    int pounds, shilling, pennies; 
+    cout << "Введите количество фунтов: ";
+    cin >> pounds;
+    cout << "Введите количество шиллингов: ";
+    cin >> shilling;
+    cout << "Введите количество пенсов: ";
+    cin >> pennies;
+    cout << "Десятичных фунтов: " << (char)156 << setprecision(2) 
+    << pounds + shilling / poundsToShilling + pennies/poundsToPennies;
+    return 0;
+}
