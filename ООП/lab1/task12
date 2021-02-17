@@ -1,0 +1,19 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main()
+{
+    const float poundsToShilling = 20.0f, 
+    shillingToPennies = 12.0f;
+    float decPounds; //десятичные фунты
+    cout << "Введите количество десятичных фунтов: ";
+    cin >> decPounds; 
+    float pounds; 
+    pounds = static_cast<int>(decPounds); //отбрасывание дробной части
+    float decFrac; 
+    decFrac = decPounds - pounds; //прибавление дробной части
+    float shilling = decFrac * poundsToShilling; 
+    cout << "Старая форма записи: " << (int)decPounds << "." << (int)shilling << "."
+    << (int)((shilling - (int)shilling)*shillingToPennies);
+    return 0;
+}
