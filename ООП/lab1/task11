@@ -1,0 +1,16 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main()
+{
+    cout << setiosflags(ios::left) << setw(21) << "Фамилия" << setiosflags(ios::left) << setw(16) << "Имя" 
+    << setiosflags(ios::left) << setw(22) << "Адрес" << setiosflags(ios::left) << setw(20) << "Город" << endl;
+    cout << setiosflags(ios::left) << setw(20) << "Петров" << setiosflags(ios::left) << setw(20) << "Василий" 
+    << setiosflags(ios::left) << setw(25) << "Кленовая 20" << setiosflags(ios::left) << setw(20) << "Санкт-Петербург" << endl;
+    cout << setiosflags(ios::left) << setw(20) << "Иванов" << setiosflags(ios::left) << setw(19) << "Сергей" 
+    << setiosflags(ios::left) << setw(25) << "Осиновая 3" << setiosflags(ios::left) << setw(25) << "Находка" << endl;
+    cout << setiosflags(ios::left) << setw(21) << "Сидоров" << setiosflags(ios::left) << setw(17) << "Иван" 
+    << setiosflags(ios::left) << setw(26) << "Березовая 21" << setiosflags(ios::left) << setw(25) << "Калининград" << endl;
+    return 0;
+}
+
