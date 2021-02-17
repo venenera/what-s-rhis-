@@ -1,0 +1,11 @@
+//Цельсия в Фаренгейт
+#include <iostream>
+#include <cctype>
+using namespace std;
+int main() { 
+    float temperatureC;
+    cout << "Введите температуру в градусах Цельсия ";
+    cin >> temperatureC;
+    cout << temperatureC*9/5 + 32  << " градуса по Фаренгейту" << endl;
+    return 0; 
+} 
