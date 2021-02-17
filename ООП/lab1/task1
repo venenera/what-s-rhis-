@@ -1,4 +1,4 @@
-// converts gallons to cubic feet #include <iostream> using namespace std; 
+// converts gallons to cubic feet 
 #include <iostream>
 using namespace std;
 
