@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+int main() { 
+    int a, b, c, d; 
+    char slash;
+    cout << "Введите первую дробь: ";
+    cin >> a >> slash >> b; 
+    cout << "Введите вторую дробь: ";
+    cin >> c >> slash >> d;
+    cout << "Сумма дробей равна "<< a*d + b*c << '/' << b*d << endl;
+    return 0;
+} 
