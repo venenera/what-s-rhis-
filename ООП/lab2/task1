@@ -1,0 +1,16 @@
+#include <iostream>
+#include <iomanip>
+using namespace std; 
+int main()
+{
+    cout << "Введите число: ";
+    int A, i;
+    cin >> A;
+    for (i = 1; i<=200; i++) {
+        cout << setw(5) << i*A << "  ";  //print multiple of n        
+        if( i%10 == 0 )                  //every 10 numbers,          
+            cout << endl; 
+    }
+
+    return 0;
+}
