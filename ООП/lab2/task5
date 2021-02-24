@@ -1,0 +1,11 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+  for (int i = 1; i <= 20; i+=2)
+  {
+    cout << string(i, 'X') << endl;
+  }
+  return 0;
+}
