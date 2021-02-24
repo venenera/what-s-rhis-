@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    int guests, chairs, result = 1;
+    cout << "Введите количество гостей: ";
+    cin >> guests;
+    cout << "Введите количество стульев: ";
+    cin >> chairs;
+    for (int i = 0; i < chairs; i++, guests--) 
+        result *= guests;
+    cout << "Число возможных рассадок гостей "<< result;
+	return 0;
+}
