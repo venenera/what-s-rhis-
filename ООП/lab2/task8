@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  setlocale(LC_ALL, "rus");
+	const int poundsToShilling = 20;
+	const int shillingToPennies = 12;
+	int pounds, shilling, pennies,
+    	pounds1, shilling1, pennies1,
+	    pounds2, shilling2, pennies2;
+	char dummychar;
+	do {
+		cout << "Введите первую сумму £";
+		cin >> pounds1 >> dummychar >> shilling1 >> dummychar >> pennies1;
+		
+		cout << "Введите вторую сумму £";
+		cin >> pounds2 >> dummychar >> shilling2 >> dummychar >> pennies2;
+		
+		pennies = (pennies1 + pennies2) % shillingToPennies;
+		
+		shilling = (shilling1 + shilling2) % poundsToShilling + (pennies1 + pennies2) / shillingToPennies;
+		
+		pounds = pounds1 + pounds2 + (shilling1 + shilling2) / poundsToShilling;
+		
+		cout << "Всего £" << pounds << '.' << shilling << '.' << pennies << endl;
+		cout << "Повторить (y/n)? ";
+		cin >> dummychar;
+	} while (dummychar != 'n');
+
+	return 0;
+}
