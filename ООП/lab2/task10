@@ -1,0 +1,25 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	float sum, deposit, perc;
+	cout << "Введите начальный вклад: ";
+	cin >> deposit;
+	sum = deposit;
+	
+	cout << "Введите процентную ставку: ";
+	cin >> perc;
+	
+	cout << "Введите требуемую сумму: ";
+	cin >> sum;
+	
+	int years;	
+	for (years = 1; deposit < sum; years++)
+		deposit *= (perc / 100 + 1);
+		
+	cout << "Для достижения данной суммы потребуется " << years - 1 << " лет(года)";
+	return 0;
+} 
