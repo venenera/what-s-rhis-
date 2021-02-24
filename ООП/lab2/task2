@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std; 
+int main()
+{
+    cout << "Начните 1 для перевода шкалы Цельсия в шкалу Фаренгейта." << endl 
+    << "2 для перевода шкалы Фаренгейта в шкалу Цельсия: ";
+    int condition;
+    cin >> condition;
+    float temperature;
+    if (condition == 1) {
+        cout << "Введите температуру по Цельсию: ";
+        cin >> temperature;
+        cout<< "Значение по Фаренгейту: " << temperature*9/5+32 << endl;
+    } 
+    else {
+        cout << "Введите температуру по Френгейту: ";
+        cin >> temperature;
+        cout<< "Значение по Цельсию: " << (temperature-32)*5/9 << endl;
+    }
+    return 0;
+}
