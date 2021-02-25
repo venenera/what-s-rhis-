@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    float num, t;
+    const int poundsToShilling = 20;
+	const int shillingToPennies = 12;
+	int pounds, shilling, pennies,
+    	pounds1, shilling1, pennies1,
+	    pounds2, shilling2, pennies2;
+	char dummychar, oper;
+	do {
+		cout << "Введите первое число: ";
+		cin >> pounds1 >> dummychar >> shilling1 >> dummychar >> pennies1;
+		cout << "Введите операцию: ";
+		cin >> oper;
+		cout << "Введите второе число: ";
+		if (oper != '*') 
+		    cin >> pounds2 >> dummychar >> shilling2 >> dummychar >>pennies2;
+		else cin >> num;
+		switch (oper)
+		{
+		case '+':
+		    pounds = pounds1 + pounds2 + (shilling1 + shilling2) / poundsToShilling;
+			shilling = (shilling1 + shilling2) % poundsToShilling + (pennies1 + pennies2) / shillingToPennies;
+			pennies = (pennies1 + pennies2) % shillingToPennies;
+			break;
+		case '-':  
+		    pounds = pounds1 - pounds2;
+			shilling = shilling1 - shilling2;
+			pennies = pennies1 - pennies2;
+			if (pennies < 0) {
+				pennies = shillingToPennies + pennies;
+				shilling--;
+			}
+			if (shilling < 0) {
+				shilling = poundsToShilling + shilling;
+				pounds--;
+			}
+			break;
+		case '*': 
+			t = pounds1 + shilling1 / (float)poundsToShilling + pennies1 / (float)shillingToPennies / (float)poundsToShilling;
+			t *= num;
+			pounds = t;
+			shilling = (t - pounds) * poundsToShilling;
+			pennies = ((t - pounds) * poundsToShilling - shilling) * shillingToPennies;
+				break;
+		default:   pounds = shilling = pennies = 0;
+		}
+		cout << "Ответ =  " << pounds << '.' << shilling << '.' << pennies;
+		cout << "\nПовторить? (y/n)? ";
+		cin >> dummychar;
+	} while (dummychar != 'n');
+	return 0;
+}
+
+
