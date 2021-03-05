@@ -1,0 +1,48 @@
+using System;
+namespace task1
+{
+    class Program
+    {
+        public static double func(double x) //функция
+        {
+            return 2 * x - Math.Log10(x) - 7;
+        }
+        public static double d1(double x) //первая производная
+        {
+            return 2 - 1 / (x * Math.Log(10));
+        }
+        public static double d2(double x) //вторая производная
+        {
+            return 1 / ((x * x) * Math.Log(10));
+        }
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Метод Ньютона");
+            double a, b, eps;
+            {
+                Console.Write("Введите левую границу отрезка a = ");
+                a = Convert.ToDouble(Console.ReadLine());
+                Console.Write("Введите левую границу отрезка b = ");
+                b = Convert.ToDouble(Console.ReadLine());
+                Console.Write("Введите погрешность eps = ");
+                eps = Convert.ToDouble(Console.ReadLine());
+            }
+            double x0; //начальное приближение
+            if (func(a) * d2(a) > 0)
+                x0 = a;
+            else
+                x0 = b;
+            int k = 1;
+            double x1 = x0 - func(x0)/d1(x0); //первое приближение
+            while (Math.Abs(x1-x0) > eps)
+            {
+                k++;
+                x0 = x1;
+                x1 = x0 - func(x0) / d1(x0);
+            }
+            Console.WriteLine($"x = {x1}");
+            Console.WriteLine($"Погрешность {Math.Abs(x1 - x0)}");
+            Console.Write($"Количество итераций {k}");
+        }
+    }
+}
