@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+struct  employee {
+    int num;
+    float salary;
+};
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    
+    employee e1, e2, e3;
+    cout << "Введите номер сотрудника и величину его пособия";
+    cout << "\nПервый сотрудник ";
+    cin >> e1.num >> e1.salary;
+    cout << "\nВторой сотрудник ";
+    cin >> e2.num >> e2.salary;
+    cout << "\nТретий сотрудник ";
+    cin >> e3.num >> e3.salary;
+    
+    cout << "Сотрудник №" << e1.num << ", пособие: " << e1.salary << "$" << endl;
+    cout << "Сотрудник №" << e2.num << ", пособие: " << e2.salary << "$" << endl;
+    cout << "Сотрудник №" << e3.num << ", пособие: " << e3.salary << "$" << endl;
+    return 0;
+}
