@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+struct point {
+    int Ox;
+    int Oy;
+};
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    point p1, p2, p3;
+    
+    cout << "Введите координаты первой точки: ";
+    cin >> p1.Ox >> p1.Oy;
+    
+    cout << "Введите координаты второй точки: ";
+    cin >> p2.Ox >> p2.Oy;
+    
+    p3.Ox = p1.Ox + p2.Ox;
+    p3.Oy = p1.Oy + p2.Oy;
+    
+    cout << "\nКоординаты суммы первой и второй точек: " 
+    << p3.Ox << "," << p3.Oy << endl;
+
+    return 0;
+}
