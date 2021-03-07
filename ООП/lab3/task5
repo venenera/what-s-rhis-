@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+struct  date {
+    int month;
+    int day;
+    int year;
+};
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    
+    date date1;
+    char dummychar;
+    cout << "Введите дату в формате день/месяц/год" << endl;
+    cin >> date1.day >> dummychar >> date1.month 
+    >> dummychar >> date1.year;
+    cout << "Введенная дата: " << date1.day << dummychar 
+    << date1.month << dummychar << date1.year;
+    return 0;
+}
