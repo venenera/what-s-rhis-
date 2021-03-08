@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+enum  etype1 {
+    laborer,
+    secretary,
+    manager,
+    accountant,
+    executive,
+    researcher
+};
+
+struct  date1 {
+    int month;
+    int day;
+    int year;
+};
+
+struct  employee {
+    int num;
+    float salary;
+    date1 date;
+    etype1 etype;
+};
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    employee emp1;
+	char ch1, ch2;
+	cout << "Введите данные о сотруднике через пробел" << endl 
+	<< "Номер, величина пособия, первая букву должности, дата принятия на работу" << endl;
+	cin >> emp1.num >> emp1.salary >> ch2 
+	>> emp1.date.day >> ch1 >> emp1.date.month >> ch1 >> emp1.date.year;
+	switch (ch2)
+	{
+	case 'l': emp1.etype = laborer; break;
+	case 's': emp1.etype = secretary; break;
+	case 'm': emp1.etype = manager; break;
+	case 'a': emp1.etype = accountant; break;
+	case 'e': emp1.etype = executive; break;
+	case 'r': emp1.etype = researcher; break;
+	default: cout << "\nОшибка"; return -1;
+	}
+	string name;
+	switch (emp1.etype)
+	{
+	case 0: name = "laborer"; break;
+	case 1: name = "secretary"; break;
+	case 2: name = "manager"; break;
+	case 3: name = "accountant"; break;
+	case 4: name = "executive"; break;
+	case 5: name = "researcher"; break;
+	}
+
+	cout << "Данные о сотруднике:" << endl 
+	<< "Номер: №" << emp1.num << endl
+	<< "Пособие: " << emp1.salary << "$" << endl
+	<< "Полное название должности: " << name << endl
+    << "Дата принятия на работу:" 
+    << emp1.date.day << ch1 << emp1.date.month << ch1 <<emp1.date.year;
+    return 0;
+}
