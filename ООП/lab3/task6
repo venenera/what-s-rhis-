@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+enum  etype {
+    laborer,
+    secretary,
+    manager,
+    accountant,
+    executive,
+    researcher
+};
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    etype N;
+	char dummychar;
+	cout << "laborer, secretary, manager, accountant, executive, researcher";
+	cout << "\nВведите первую букву должности: ";
+	cin >> dummychar;
+	switch (dummychar)
+	{
+	case 'l': N = laborer; break;
+	case 's': N = secretary; break;
+	case 'm': N = manager; break;
+	case 'a': N = accountant; break;
+	case 'e': N = executive; break;
+	case 'r': N = researcher; break;
+	default: cout << "\nОшибка"; return -1;
+	}
+	string name;
+	switch (N)
+	{
+	case 0: name = "laborer"; break;
+	case 1: name = "secretary"; break;
+	case 2: name = "manager"; break;
+	case 3: name = "accountant"; break;
+	case 4: name = "executive"; break;
+	case 5: name = "researcher"; break;
+	}
+	cout << "Полное название должности: " << name;
+
+    return 0;
+}
