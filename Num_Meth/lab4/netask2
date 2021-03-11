@@ -1,0 +1,41 @@
+using System;
+
+namespace task1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Метод простых итераций");
+            double x0, y0, eps;
+            {
+                Console.Write("Введите значение x0 = ");
+                x0 = Convert.ToDouble(Console.ReadLine());
+                Console.Write("Введите значение y0 = ");
+                y0 = Convert.ToDouble(Console.ReadLine());
+                Console.Write("Введите значение погрешности eps = ");
+                eps = Convert.ToDouble(Console.ReadLine());
+            }
+
+            int k = 0;
+            double x, y, d1, d2;
+
+            do
+            {
+                k++;
+                x = 0.8 - Math.Cos(y0 + 0.5);
+                y = (Math.Sin(x0) - 1.6)/2;
+                d1 = Math.Cos(y + 0.5) + x - 0.8;
+                d2 = Math.Sin(x + 1) - 2*y - 1.6;
+                x0 = x;
+                y0 = y;
+            }
+            while (Math.Abs(d1) > eps && (Math.Abs(d2) > eps));
+
+            Console.WriteLine($"x = {x}");
+            Console.WriteLine($"y = {y}");
+            Console.WriteLine($"Точность {(d1 >= d2 ? d1 : d2)}");
+            Console.WriteLine($"Количество итераций {k}");
+        }
+    }
+}
