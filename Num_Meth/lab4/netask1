@@ -1,0 +1,84 @@
+using System;
+
+namespace task2
+{
+    class Program
+    {
+        public static double f1(double x, double y) //первая ф-я
+        {
+            return Math.Cos(y + 0.5) + x - 0.8;
+        }
+        public static double f2(double x, double y) //вторая ф-я
+        {
+            return Math.Sin(x + 1) - 1.6 - 2*y;
+        }
+        public static double d1x(double x, double y) //произв-я 1ой ф-и по х
+        {
+            return 1;
+        }
+        public static double d1y(double x, double y) //произв-я 1ой ф-и по у
+        {
+            return -Math.Sin(y + 0.5);
+        }
+        public static double d2x(double x, double y) //произв-я 2ой ф-и по х
+        {
+            return Math.Cos(x);
+        }
+        public static double d2y(double x, double y) //произв-я 2ой ф-и по у
+        {
+            return -2;
+        }
+
+        public static void Matrix(double[,] M)
+        {
+            double det, aa;
+            det = M[0, 0] * M[1, 1] - M[0, 1] * M[1, 0];
+            aa = M[0, 0];
+            M[0, 0] = M[1, 1] / det;
+            M[1, 1] = aa / det;
+            M[0, 1] = -M[0, 1] / det;
+            M[1, 0] = M[1, 0] / det;
+        }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Метод Ньютона");
+            double x, y, eps;
+            {
+                Console.Write("Введите значение x0 = ");
+                x = Convert.ToDouble(Console.ReadLine());
+                Console.Write("Введите значение y0 = ");
+                y = Convert.ToDouble(Console.ReadLine());
+                Console.Write("Введите значение погрешности eps = ");
+                eps = Convert.ToDouble(Console.ReadLine());
+            }
+
+            int k = 0;
+            double dx, dy, P;
+            double[,] M = new double[2, 2];
+            double[] M1 = new double[2];
+
+            do
+            {
+                M[0, 0] = d1x(x, y);
+                M[0, 1] = d2x(x, y);
+                M[1, 0] = d1y(x, y);
+                M[1, 1] = d2y(x, y);
+                Matrix(M);
+                dx = -M[0, 0] * f1(x, y) + (-M[0, 1]) * f2(x, y);
+                dy = -M[1, 0] * f1(x, y) + (-M[1, 1]) * f2(x, y);
+                x += dx;
+                y += dy;
+                M1[0] = f1(x, y);
+                M1[1] = f2(x, y);
+                P = Math.Sqrt(Math.Pow(M1[0], 2) + Math.Pow(M1[1], 2));
+                k++;
+            } while (P >= eps);
+
+            Console.WriteLine($"x = {x}");
+            Console.WriteLine($"y = {y}");
+            Console.WriteLine($"Точность {P}");
+            Console.WriteLine($"Количество итераций {k}");
+        }
+    }
+}
