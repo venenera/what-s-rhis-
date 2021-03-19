@@ -1,0 +1,36 @@
+using System;
+
+namespace task1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Метод прогонки");
+            int j, k = 14, n = 101,
+                a = 1, b = 2, c = 1, d = 10*k;
+
+            double[] V = new double[n];
+            double[] U = new double[n];
+            double[] X = new double[n];
+
+            V[1] = -c / b;
+            U[1] = d / b;
+
+            for(j = 2; j < n; j++)
+            {
+                U[j] = -c / (a * U[j - 1] + b);
+                V[j] = (d - a * V[j - 1]) / (a * U[j - 1] + b);
+            }
+
+            X[n-1] = (d - a * V[n - 1]) / (a * U[n - 1] + b);
+            for (j = n - 2; j > 0; j--)
+                X[j] = U[j] * X[j + 1] + V[j];
+
+            for (j = 1; j <= n - 1; j++)
+            {
+                    Console.WriteLine($"x[{j}] = {X[j]}"); 
+            }
+        }
+    }
+}
