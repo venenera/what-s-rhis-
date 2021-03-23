@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+struct Time {
+    int hour; 
+    int min;
+    int sec;
+};
+
+int main() // входная точка программы 
+{ 
+    setlocale(LC_ALL, "rus");
+    Time userT; //числители – a и c, знаменатели – b и d
+    char dummychar; /*переменная, которая будет содержать знак ":"*/
+    cout << "Введите время (в формате ЧЧ:ММ:СС): ";
+    cin >> userT.hour >> dummychar >> userT.min >> dummychar >> userT.sec;
+    int seconds = userT.hour * 3600 + userT.min*60 + userT.sec;
+    cout << "Количество секунд в введеном времени: "<< seconds;
+    return 0;
+}
