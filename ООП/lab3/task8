@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+struct fraction {
+    int num; //числитель
+    int denom; //знаменатель
+};
+
+int main() // входная точка программы 
+{ 
+    setlocale(LC_ALL, "rus");
+    fraction a, b, c, d, result; //числители – a и c, знаменатели – b и d
+    char dummychar; /*переменная, которая будет содержать знак “/” дроби*/
+    cout << "Введите первую дробь: ";
+    cin >> a.num >> dummychar >> b.denom; 
+    cout << "Введите вторую дробь: ";
+    cin >> c.num >> dummychar >> d.denom;
+    result.num = a.num*d.denom + b.denom*c.num;
+    result.denom = b.denom*d.denom;
+    cout << "Сумма дробей равна "<< result.num << '/' << result.denom << endl;
+    return 0;
+}
