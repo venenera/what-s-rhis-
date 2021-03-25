@@ -1,0 +1,35 @@
+using System;
+
+namespace task1
+{
+    class Program
+    {
+        public static double Function (double x)
+        {
+            return Math.Sin(Math.Log(x));
+        }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Метод прямоугольников");
+			int a = 2, b = 10;
+			Console.WriteLine($"Левая граница = {a}\nПравая граница = {b}");
+			Console.Write("Введите точность: ");
+			double n = Convert.ToDouble(Console.ReadLine());
+
+            double h = (b - a) / n, x,
+                approximateInt = 0,
+                correctInt = 7.191186860789368;
+
+            for (int k = 0; k < n; k++)
+            {
+                x = a + k * h;
+                approximateInt += (Function(x));
+            }
+            
+            Console.WriteLine($"Приблизительное значение интеграла: {approximateInt * h}\n" +
+                $"Точное значение интеграла: {correctInt}\n" +
+                $"Разница: {Math.Abs(correctInt - approximateInt * h)}");
+        }
+    }
+}
