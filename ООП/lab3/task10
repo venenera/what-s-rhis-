@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+struct Sterling
+{
+	const float poundsToShilling = 20;
+	const float shillingToPennies = 12;
+
+	int pounds, shillings, pence;
+
+	Sterling(double sum)
+	{
+		pounds = (int)sum;
+		double newShillings = poundsToShilling * (sum - pounds);
+		shillings = newShillings;
+		pence = (int)((newShillings - shillings) * shillingToPennies);
+	}
+};
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    double decPounds;
+    cout << "Введите количество десятичный фунтов ";
+    cin >> decPounds;
+    Sterling sum = Sterling(decPounds);
+    cout << "Старая форма записи: " << sum.pounds << "." << sum.shillings << "." << sum.pence;
+
+    return 0;
+}
