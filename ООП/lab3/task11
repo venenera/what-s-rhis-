@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+struct Time {
+    int hours; 
+    int min;
+    int sec;
+    
+    int Seconds()
+	{
+		return hours * 3600 + min * 60 + sec;
+	}
+
+	Time(){}
+
+	Time(int Seconds)
+	{
+		hours = Seconds / 3600;
+		int t = Seconds % 3600;
+		min = t / 60;
+		sec = t % 60;
+	}
+};
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    Time user1T, user2T; 
+    char dummychar; /*переменная, которая будет содержать знак ":"*/
+    cout << "Введите время (в формате ЧЧ:ММ:СС):" << endl;
+    cout << "1: ";
+    cin >> user1T.hours >> dummychar >> user1T.min >> dummychar >> user1T.sec;
+    cout << "2: ";
+    cin >> user2T.hours >> dummychar >> user2T.min >> dummychar >> user2T.sec;
+    Time result = Time(user1T.Seconds() + user2T.Seconds());
+	cout << "Сумма : " << result.hours << dummychar << result.min << dummychar << result.sec;
+    return 0;
+}
