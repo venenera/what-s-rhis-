@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+struct fraction {
+    int num; //числитель
+    int denom; //знаменатель
+};
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    fraction a, b, result;
+	char oper, dummychar;
+    do {
+		cout << "Введите первый операнд, затем знак операции и второй операнд ";
+		cin >> a.num >> dummychar >> a.denom >> oper >> b.num >> dummychar >> b.denom;
+        switch (oper)
+		{
+		case '+':
+			result.num = a.num * b.denom + a.denom * b.num;
+			result.denom = a.denom * b.denom;
+			break;
+		case '-':  
+			result.num = a.num * b.denom - a.denom * b.num;
+			result.denom = a.denom * b.denom;
+			break;
+		case '*': 
+			result.num = a.num * b.num;
+			result.denom = a.denom * b.denom;
+				break;
+		default:   result.num = result.denom = 0;
+		}
+		cout << "Ответ = " << result.num << '/' << result.denom;
+		cout << "\nПовторить (y/n)? ";
+		cin >> dummychar;
+	} while (dummychar != 'n'); //цикл закончится при вводе ‘n’, продолжится при вводе ‘y’
+    return 0;
+}
