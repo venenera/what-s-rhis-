@@ -10,7 +10,7 @@ struct Time {
 int main() // входная точка программы 
 { 
     setlocale(LC_ALL, "rus");
-    Time userT; //числители – a и c, знаменатели – b и d
+    Time userT; 
     char dummychar; /*переменная, которая будет содержать знак ":"*/
     cout << "Введите время (в формате ЧЧ:ММ:СС): ";
     cin >> userT.hour >> dummychar >> userT.min >> dummychar >> userT.sec;
