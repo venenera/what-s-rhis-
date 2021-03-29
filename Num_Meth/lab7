@@ -1,0 +1,45 @@
+using System;
+
+namespace rect
+{
+    class Program
+    {
+        public static double Function(double x)
+        {
+            return Math.Sin(Math.Log(x));
+        }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Метод трапеций");
+            int a = 2, b = 10;
+            Console.WriteLine($"a = {a}\nb = {b}");
+            double correctInt = 7.191186860789368;
+            Console.WriteLine($"Точное значение интеграла: {correctInt}");
+            Console.WriteLine();
+            double n = 10;
+
+            for (int i = 0; i < 4; i++)
+            {
+                
+                double h = (b - a) / n,
+                    x0, xk, sum = 0;
+
+                for (int k = 0; k < n; k++)
+                {
+                    x0 = a + k * h;
+                    xk = a + (k + 1) * h;
+                    sum += Function(x0) + Function(xk);
+                }
+
+                double approximateInt = sum * h / 2;
+                Console.WriteLine($"Количество отрезков: {n}\n" +
+                    $"Шаг: {h}\n" +
+                    $"Приблизительное значение интеграла: {approximateInt}\n" +
+                    $"Разница: {Math.Abs(correctInt - approximateInt)}");  
+                Console.WriteLine();
+                n *= 10;
+            }
+        }
+    }
+}
