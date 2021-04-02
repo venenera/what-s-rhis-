@@ -1,0 +1,52 @@
+using System;
+
+namespace oaooaoao
+{
+    class Program
+    {
+        public static double Function(double x)
+        {
+            return Math.Sin(Math.Log(x));
+        }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Метод Симпсона ");
+            int a = 2, b = 10;
+            Console.WriteLine($"a = {a}\nb = {b}");
+            double correctInt = 7.191186860789368;
+            Console.WriteLine($"Точное значение интеграла: {correctInt}");
+            Console.WriteLine();
+            double n = 10;
+
+            double h = 0,
+                    sum4 = 0, sum2 = 0, sum, sum1 = 0;
+            for (int i = 0; i < 4; i++)
+            {
+
+                h = (b - a) / n;
+                sum4 = 0; sum2 = 0; sum = 0; sum1 = 0;
+
+                for (int k = 0; k <= n; k ++)
+                {
+                    if (k == 0 || k == n)
+                        sum1 += Function(a + h * k);
+                    else if (k % 2 == 0)
+                        sum2 += Function(a + h * k);
+                    else if (k % 2 != 0)
+                        sum4 += Function(a + h * k);
+                }
+
+                sum = sum1 + sum4 * 4 + sum2 * 2;
+                double approximateInt = sum * h / 3;
+                Console.WriteLine($"Количество отрезков: {n}\n" +
+                    $"Шаг: {h}\n" +
+                    $"Приблизительное значение интеграла: {approximateInt}\n" +
+                    $"Разница: {Math.Abs(correctInt - approximateInt)}");
+                Console.WriteLine();
+                n *= 10;
+            }
+
+        }
+    }
+}
