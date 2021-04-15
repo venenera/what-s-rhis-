@@ -1,0 +1,18 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+float circarea (float R) {
+    float PI = 3.14159F;
+    return PI * R * R;
+}
+
+int main()
+{
+    float R, area; 
+    cout << "Введите значение радиуса окружности: ";
+    cin >> R;
+    cout << circarea(R);
+    
+    return 0;
+}
