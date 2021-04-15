@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+long hms_to_secs(int hour, int min, int sec)
+{
+	return hour * 3600 + min * 60 + sec;
+}
+int main()
+{
+	setlocale(LC_ALL, "");
+	int hour, min, sec;
+	char dummychar;
+	do
+	{
+	    cout << "Перевод время из ЧЧ:ММ:СС в секунды" << endl;
+		cout << "Введите время (в формате ЧЧ:ММ:СС) : ";
+		cin >> hour >> dummychar >> min >> dummychar >> sec;
+		cout << "Время в секундах: " << hms_to_secs(hour, min, sec) << endl;
+		cout << "Повторить?('y' - да, 'n' - нет) ";
+		cin >> dummychar;
+	} while (dummychar == 'y');
+	return 0;
+}
