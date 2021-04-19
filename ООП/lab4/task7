@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+
+double power(char n, int p = 2) {
+	double res = 1;
+	int j;
+	for (j= 0; j < p; j++)
+		res *= n;
+	return res;
+}
+
+double power(int n, int p = 2) {
+	double res = 1;
+	int j;
+	for (j = 0; j < p; j++)
+		res *= n;
+	return res;
+}
+
+double power(long n, int p = 2) {
+	double res = 1;
+	int j;
+	for (j = 0; j < p; j++)
+		res *= n;
+	return res;
+}
+
+double power(float n, int p = 2) {
+	double res = 1;
+	int j;
+	for (j = 0; j < p; j++)
+		res *= n;
+	return res;
+}
+
+double power(double n, int p = 2) {
+	double res = 1;
+	int j;
+	for (j = 0; j < p; j++)
+		res *= n;
+	return res;
+}
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    char C;
+    int pow;
+    int I;
+    long L;
+    float F;
+    double D;
+    cout << "Введите пять чисел типа:" << endl;
+    cout << "char: ";
+	cin >> C;
+	cout << "int: ";
+	cin >> I;
+	cout << "long: ";
+	cin >> L;
+	cout << "float: ";
+	cin >> F;
+	cout << "double: ";
+	cin >> D;
+	cout << "Введите степень: ";
+	cin >> pow;
+	cout << "Ответы: "<< endl << power(C, pow) << endl << power(I, pow) << endl << power(L, pow) << endl << power(F, pow) << endl << power(D, pow);
+    return 0;
+}
