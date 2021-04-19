@@ -1,16 +1,16 @@
 #include <iostream>
 using namespace std;
 struct Sterling {
-	const float poundsToShilling = 20;
-	const float shillingToPennies = 12;
+	const int poundsToShilling = 20;
+	const int shillingToPennies = 12;
 
 	int pnds, sh, pnc;
 
-	ToSterling(int pounds, int shillings, int pence) {
+	Sterling(int pounds, int shillings, int pence) {
 	    sh = shillings + pence / shillingToPennies;
-	    pnc = (int) pence % shillingToPennies;
+	    pnc = pence % shillingToPennies;
 	    pnds = shillings / poundsToShilling + pounds;
-	    sh = (int) sh % poundsToShilling;
+	    sh = sh % poundsToShilling;
 	}
 	
 	void Output() {
@@ -19,7 +19,7 @@ struct Sterling {
 };
 
 Sterling Sum (Sterling sh1, Sterling sh2) {
-	    return ToSterling(sh1.pnds + sh2.pnds, sh1.sh + sh2.sh, sh1.pnc + sh2.pnc);
+	    return Sterling(sh1.pnds + sh2.pnds, sh1.sh + sh2.sh, sh1.pnc + sh2.pnc);
 	}
 
 int main() {
@@ -31,9 +31,9 @@ int main() {
 	cin >> pnds1 >> dummychar >> shill1 >> dummychar >> pnc1;
 	cout << "2: ";
 	cin >> pnds2 >> dummychar >> shill2 >> dummychar >> pnc2;
-	Sterling sh1 = ToSterling(pnds1, shill1, pnc1);
-	Sterling sh2 = ToSterling(pnds2, shill2, pnc2);
+	Sterling sh1 = Sterling(pnds1, shill1, pnc1);
+	Sterling sh2 = Sterling(pnds2, shill2, pnc2);
 	Sterling Result = Sum(sh1, sh2);
-	Result.Write();
+	Result.Output();
     return 0;
 }
