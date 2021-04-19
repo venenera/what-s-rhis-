@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+struct Time {
+ int hours;
+ int min;
+ int sec;
+};
+
+void swap(int &num1, int &num2)
+{
+	int t = num1;
+	num1 = num2;
+	num2 = t;
+}
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	Time user1T, user2T; 
+    char dummychar; /*переменная, которая будет содержать знак ":"*/
+    cout << "Введите время (в формате ЧЧ:ММ:СС):" << endl;
+    cout << "1: ";
+    cin >> user1T.hours >> dummychar >> user1T.min >> dummychar >> user1T.sec;
+    cout << "2: ";
+    cin >> user2T.hours >> dummychar >> user2T.min >> dummychar >> user2T.sec;
+	swap(user1T, user2T);
+	cout << "Результат обмена:" << endl;
+	cout << user1T.hours << dummychar << user1T.min << dummychar << user1T.sec << endl;
+	cout << user2T.hours << dummychar << user2T.min << dummychar << user2T.sec;
+	return 0;
+}
