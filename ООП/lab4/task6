@@ -6,8 +6,6 @@ struct Time {
  int sec;
 };
 
-Time user1T, user2T, result;
-
 long time_to_secs (Time time) {
  long seconds = (time.hours * 3600 + time.min * 60 + time.sec);
  return seconds;
