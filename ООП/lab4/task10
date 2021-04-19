@@ -1,33 +1,26 @@
 #include <iostream>
 using namespace std;
-
 int GlobalVar;
-
 void Global()
 {
-	while (GlobalVar < 10) {
-	    cout << "Глобальная переменная вызывалась: " << GlobalVar++ << " раз" << endl;
-	}
+	cout << "Глобальная переменная вызывалась: " << GlobalVar++ << " раз" << endl;
+	if (GlobalVar == 10) 
+	    return;
 	Global();
 }
-
 void Local()
 {
 	static int LocalVar = 0;	
-	cout << "Локальная статическая переменная вызывалась : " << LocalVar++ << "раз" << endl;
-	while (GlobalVar < 10) {
-	    cout << "Глобальная переменная вызывалась: " << GlobalVar++ << " раз" << endl;
-	}
+	cout << "Локальная статическая переменная вызывалась : " << LocalVar++ << " раз" << endl;
+    if (LocalVar == 10) 
+	    return;
 	Local();
 }
-
 int main()
 {
 	setlocale(LC_ALL, "");
 	GlobalVar = 0;
 	Global();
-	
 	Local();
 	return 0;
 }
-
