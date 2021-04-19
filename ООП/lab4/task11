@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+struct Sterling {
+	const float poundsToShilling = 20;
+	const float shillingToPennies = 12;
+
+	int pnds, sh, pnc;
+
+	ToSterling(int pounds, int shillings, int pence) {
+	    sh = shillings + pence / shillingToPennies;
+	    pnc = (int) pence % shillingToPennies;
+	    pnds = shillings / poundsToShilling + pounds;
+	    sh = (int) sh % poundsToShilling;
+	}
+	
+	void Output() {
+	    cout << "Результат: " << pnds << "." << sh << "." << pnc;
+	}
+};
+
+Sterling Sum (Sterling sh1, Sterling sh2) {
+	    return ToSterling(sh1.pnds + sh2.pnds, sh1.sh + sh2.sh, sh1.pnc + sh2.pnc);
+	}
+
+int main() {
+    setlocale(LC_ALL, "rus");
+    int pnds1, pnds2, shill1, shill2, pnc1, pnc2;
+	char dummychar;
+	cout << "Введите значения денежных сумм: " << endl;
+	cout << "1: ";
+	cin >> pnds1 >> dummychar >> shill1 >> dummychar >> pnc1;
+	cout << "2: ";
+	cin >> pnds2 >> dummychar >> shill2 >> dummychar >> pnc2;
+	Sterling sh1 = ToSterling(pnds1, shill1, pnc1);
+	Sterling sh2 = ToSterling(pnds2, shill2, pnc2);
+	Sterling Result = Sum(sh1, sh2);
+	Result.Write();
+    return 0;
+}
