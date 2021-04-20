@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+struct fraction {
+    int num; //числитель
+    int denom; //знаменатель
+};
+
+fraction fsum (fraction u1F, fraction u2F) {
+    fraction result;
+    result.num = u1F.num * u2F.denom + u1F.denom * u2F.num;
+    result.denom = u1F.denom * u2F.denom;
+    return result;
+}
+
+fraction fsub (fraction u1F, fraction u2F) {
+    fraction result;
+    result.num = u1F.num * u2F.denom - u1F.denom * u2F.num;
+    result.denom = u1F.denom * u2F.denom;
+    return result;
+}
+
+fraction fmul (fraction u1F, fraction u2F) {
+    fraction result;
+    result.num = u1F.num * u2F.num;
+	result.denom = u1F.denom * u2F.denom;
+	return result;
+}
+
+fraction fdiv (fraction u1F, fraction u2F) {
+    fraction result;
+    result.num = u1F.num * u2F.denom;
+	result.denom = u1F.denom * u2F.num;
+	return result;
+}
+int main() {
+    setlocale(LC_ALL, "rus");
+    fraction u1F, u2F, result;
+	char oper, dummychar;
+    do {
+		cout << "Введите первый операнд, затем знак операции и второй операнд ";
+		cin >> u1F.num >> dummychar >> u1F.denom >> oper >> u2F.num >> dummychar >> u2F.denom;
+        switch (oper)
+		{
+		case '+':
+			result = fsum(u1F, u2F);
+			break;
+		case '-':  
+			result = fsub(u1F, u2F);
+			break;
+		case '*': 
+			result = fmul(u1F, u2F);
+			break;
+		case '/':
+		    result = fdiv(u1F, u2F);
+		    break;
+		default:   result.num = result.denom = 0;
+		}
+		cout << "Ответ = " << result.num << '/' << result.denom;
+		cout << "\nПовторить (y/n)? ";
+		cin >> dummychar;
+	} while (dummychar != 'n'); //цикл закончится при вводе ‘n’, продолжится при вводе ‘y’
+    return 0;
+}
