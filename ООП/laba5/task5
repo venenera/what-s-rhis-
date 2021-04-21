@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+class  date {
+    private: 
+        int _month;
+        int _day;
+        int _year;
+    public: 
+        void getdate(string userDate) {
+            _day = (userDate[0]-'0') * 10 + (userDate[1] - '0');
+            _month = (userDate[3] - '0') * 10 + (userDate[4] - '0');
+            _year = (userDate[6] - '0') * 10 + (userDate[7] - '0');
+        }
+        void showdate() {
+    		cout << (_day < 10 ? '0' : '\0') << _day << '/' << 
+    			(_month < 10 ? '0' : '\0') << _month << '/' << 
+    			(_year < 10 ? '0' : '\0') << _year << endl;
+    	}
+};
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    string userDate;
+    
+    char dummychar;
+    cout << "Введите дату в формате ДД/ММ/ГГ: ";
+    cin >> userDate;
+    date date1;
+    date1.getdate(userDate);
+    cout << "Введенная дата:";
+    userDate.showdate();
+    return 0;
+}
