@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+class employee {
+    private:
+        int _num;
+        float _salary;
+    public:
+        employee(int num, float salary): _num(num), _salary(salary) {
+        }
+        employee() {
+        }
+        void output() {
+            cout << "Номер сотрудника: №" << _num << endl << "З/п: " << _salary << endl;
+        }
+    };
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    int num; float salary;
+    employee emp1, emp2, emp3;
+    cout << "Введите номер сотрудника и величину его пособия" << endl;
+    cout << "Первый сотрудник ";
+    cin >> num >> salary;
+    emp1 = employee(num, salary);
+    cout << "Второй сотрудник ";
+    cin >> num >> salary;
+    emp2 = employee(num, salary);
+    cout << "Третий сотрудник ";
+    cin >> num >> salary;
+    emp3 = employee(num, salary);
+    cout << "Полученные данные:" << endl;
+    emp1.output();
+    emp2.output();
+    emp3.output();
+    return 0;
+}
