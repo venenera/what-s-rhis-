@@ -30,6 +30,6 @@ int main()
     date date1;
     date1.getdate(userDate);
     cout << "Введенная дата:";
-    userDate.showdate();
+    date1.showdate();
     return 0;
 }
