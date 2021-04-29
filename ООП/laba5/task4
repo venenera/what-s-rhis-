@@ -3,17 +3,17 @@ using namespace std;
 
 class employee {
     private:
-        int _num;
-        float _salary;
+        int num1;
+        float salary1;
     public:
-        employee(int num, float salary): _num(num), _salary(salary) {
+        employee(int num, float salary): num1(num), salary1(salary) {
         }
         employee() {
         }
         void output() {
-            cout << "Номер сотрудника: №" << _num << endl << "З/п: " << _salary << endl;
+            cout << "Номер сотрудника: №" << num1 << endl << "З/п: " << salary1 << endl;
         }
-    };
+};
 
 int main()
 {
