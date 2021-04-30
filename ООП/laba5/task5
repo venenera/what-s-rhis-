@@ -3,19 +3,19 @@ using namespace std;
 
 class  date {
     private: 
-        int _month;
-        int _day;
-        int _year;
+        int Month;
+        int Day;
+        int Year;
     public: 
         void getdate(string userDate) {
-            _day = (userDate[0]-'0') * 10 + (userDate[1] - '0');
-            _month = (userDate[3] - '0') * 10 + (userDate[4] - '0');
-            _year = (userDate[6] - '0') * 10 + (userDate[7] - '0');
+            Day = (userDate[0]-'0') * 10 + (userDate[1] - '0');
+            Month = (userDate[3] - '0') * 10 + (userDate[4] - '0');
+            Year = (userDate[6] - '0') * 10 + (userDate[7] - '0');
         }
         void showdate() {
-    		cout << (_day < 10 ? '0' : '\0') << _day << '/' << 
-    			(_month < 10 ? '0' : '\0') << _month << '/' << 
-    			(_year < 10 ? '0' : '\0') << _year << endl;
+    		cout << (Day < 10 ? '0' : '\0') << Day << '/' << 
+    			(Month < 10 ? '0' : '\0') << Month << '/' << 
+    			(Year < 10 ? '0' : '\0') << Year << endl;
     	}
 };
 
@@ -29,7 +29,7 @@ int main()
     cin >> userDate;
     date date1;
     date1.getdate(userDate);
-    cout << "Введенная дата:";
+    cout << "Введенная дата: ";
     date1.showdate();
     return 0;
 }
