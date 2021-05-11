@@ -1,0 +1,53 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+
+class angle
+{
+private:
+	int Degrees;
+	float Minutes;
+	char Direction;
+public:
+	angle(int deg, float min, char dir) : 
+		Degrees(deg), Minutes(min), Direction(dir)
+	{
+	}
+
+	void putcoordinates()
+	{
+		char dummychar, dir;
+		int deg;
+		float min;
+		cin >> deg >> dummychar >> min >> dummychar >> dir;
+		Degrees = deg;
+		Minutes = min;
+		Direction = dir;
+	}
+	void showcoordinates()
+	{
+		cout << Degrees << '\xF8' << Minutes << "' " << Direction << endl;
+	}
+};
+
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	angle longtitude = angle(0, 0, 'S');
+	angle latitude = angle(0, 0, 'E');
+	char dummychar;
+	do
+	{
+		cout << "Введите координаты (пр. 34°56’W, 46°30’S):" << endl;
+		latitude.putcoordinates();
+		longtitude.putcoordinates();
+		cout << "Полученные данные:" << endl;
+		latitude.showcoordinates();
+		longtitude.showcoordinates();
+		cout << "Повторить? (да - 'y', нет - 'n') ";
+		cin >> dummychar;
+		cout << "_______________________________________________________" << endl;
+	} while (dummychar != 'n');
+	return 0;
+}
