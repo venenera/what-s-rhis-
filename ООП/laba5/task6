@@ -1,26 +1,7 @@
 #include <iostream>
+#include <string>
 using namespace std;
-
-class  date {
-    private: 
-        int Month;
-        int Day;
-        int Year;
-    public: 
-        void getdate(string usDate) {
-            Day = (usDate[0]-'0') * 10 + (usDate[1] - '0');
-            Month = (usDate[3] - '0') * 10 + (usDate[4] - '0');
-            Year = (usDate[6] - '0') * 10 + (usDate[7] - '0');
-        }
-        void showdate() {
-    		cout << (Day < 10 ? '0' : '\0') << Day << '/' << 
-    			(Month < 10 ? '0' : '\0') << Month << '/' << 
-    			(Year < 10 ? '0' : '\0') << Year << endl;
-    	}
-};
-
-enum etype
-{
+enum etype {
 	laborer,
 	secretary,
 	manager,
@@ -28,61 +9,83 @@ enum etype
 	executive,
 	researcher
 };
-
-class employee {
-    private:
-        int userNum;
-        float userSalary;
-        date userDate;
-        etype userType;
-    public:
-    void showemployee(int num, float salary, date DATE, char dummychar)
-        userNum = num;
-        userSalary = salary;
-        userDate = DATE;
-        switch (dummychar)//ветвление для ввода
-    	{
-    	case 'l': userType = laborer; break;
-    	case 's': userType = secretary; break;
-    	case 'm': userType = manager; break;
-    	case 'a': userType = accountant; break;
-    	case 'e': userType = executive; break;
-    	case 'r': userType = researcher; break;
-    	default: cout << "\nОшибка"; return -1;
-    	}
-
-        void output() {
-            cout << "Номер сотрудника: №" << userNum << endl << "З/п: " << userSalary << endl;
-        	switch (userType) { //ветвление для вывода должности
-        	case 0: cout << "laborer"; break;
-        	case 1: cout << "secretary"; break;
-        	case 2: cout << "manager"; break;
-        	case 3: cout << "accountant"; break;
-        	case 4: cout << "executive"; break;
-        	case 5: cout << "researcher"; break;
-        	}
-            
-        }
+class date {
+private:
+	int Day;
+	int Month;
+	int Year;
+public:
+	void getdate(string DATE) {
+		Day = (DATE[0] - '0') * 10 + (DATE[1] - '0');
+		Month = (DATE[3] - '0') * 10 + (DATE[4] - '0');
+		Year = (DATE[6] - '0') * 10 + (DATE[7] - '0');
+	}
+	void showdate() {
+		cout << (Day < 10 ? '0' : '\0') << Day << '/' << (Month < 10 ? '0' : '\0') << Month << '/' << (Year < 10 ? '0' : '\0') << Year;
+	}
 };
+class employee {
+private:
+    date Date;
+	etype Type;
+	int Num;
+	float Salary;
+public:
+void putemployee(int num1, float salary1, date date1, char dummychar) {
+        switch (dummychar) {
+		case 'l': Type = laborer; break;
+		case 's': Type = secretary; break;
+		case 'm': Type = manager; break;
+		case 'a': Type = accountant; break;
+		case 'e': Type = executive; break;
+		case 'r': Type = researcher; break;
+		}
+		Num = num1;
+		Salary = salary1;
+		Date = date1;
+	}
 
-int main()
-{
-    setlocale(LC_ALL, "rus");
-    int num; float salary;
-    employee emp1, emp2, emp3;
-    cout << "Введите номер сотрудника и величину его пособия" << endl;
+	void showdate() {
+		cout << "Сотрудник №" << Num << endl << "З/п: " << Salary << endl << "Должность: ";
+		switch (Type) {
+		case 0: cout << "laborer"; break;
+		case 1: cout << "secretary"; break;
+		case 2: cout << "manager"; break;
+		case 3: cout << "accountant"; break;
+		case 4: cout << "executive"; break;
+		case 5: cout << "researcher"; break;
+		}
+		cout << endl;
+		cout << "Дата принятия на работу: ";
+		Date.showdate();
+		cout << endl;
+		cout << "-----------------------------------------" << endl;
+	}
+};
+int main() {
+	setlocale(LC_ALL, "rus");
+	employee emp1, emp2, emp3;
+	int userNum;
+	float userSalary;
+	string DATE;
+	char userType;
+    date userDate;
+	cout << "Введите номер сотрудника и величину его пособия" << endl;
     cout << "Первый сотрудник ";
-    cin >> num >> salary;
-    emp1 = employee(num, salary);
-    cout << "Второй сотрудник ";
-    cin >> num >> salary;
-    emp2 = employee(num, salary);
-    cout << "Третий сотрудник ";
-    cin >> num >> salary;
-    emp3 = employee(num, salary);
-    cout << "Полученные данные:" << endl;
-    emp1.output();
-    emp2.output();
-    emp3.output();
-    return 0;
+	cin >> userNum >> userSalary >> userType >> DATE;
+	userDate.getdate(DATE);
+	emp1.putemployee(userNum, userSalary, userDate, userType);
+	cout << "Второй сотрудник ";
+	cin >> userNum >> userSalary >> userType >> DATE;
+	userDate.getdate(DATE);
+	emp2.putemployee(userNum, userSalary, userDate, userType);
+	cout << "Третий сотрудник ";
+	cin >> userNum >> userSalary >> userType >> DATE;
+	userDate.getdate(DATE);
+	emp3.putemployee(userNum, userSalary, userDate, userType);
+	cout << "Полученные данные:" << endl;
+	emp1.showdate();
+	emp2.showdate();
+	emp3.showdate();
+	return 0;
 }
