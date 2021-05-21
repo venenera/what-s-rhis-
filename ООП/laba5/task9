@@ -1,0 +1,43 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+class fraction {
+private:
+    int NUM, //числитель
+        DENOM; //знаменатель
+public:
+    fraction():NUM(0), DENOM(0) {}
+    fraction(int num, int denom): NUM(num), DENOM(denom) {}
+    char dummychar;
+    void putfr () {
+        cin >> NUM >> dummychar >> DENOM;
+    }
+    void addfraction (fraction a, fraction b) {
+        NUM = a.NUM*b.DENOM + a.DENOM*b.NUM;
+        DENOM = a.DENOM*b.DENOM;
+    }
+    void outputfraction () {
+        cout << "Сумма дробей равна "<< NUM << "/" << DENOM << endl;
+    }
+};
+
+int main() // входная точка программы 
+{ 
+    setlocale(LC_ALL, "rus");
+    fraction a, b, result; //числители – a и c, знаменатели – b и d
+    char dummychar; /*переменная, которая будет содержать знак “/” дроби*/
+    do {
+        cout << "Введите первую дробь: ";
+        a.putfr();
+        cout << "Введите вторую дробь: ";
+        b.putfr();
+        result.addfraction(a,b);
+        result.outputfraction();
+        cout << "Повторить? (да - 'y', нет - 'n') ";
+		cin >> dummychar;
+		cout << "__________________________________" << endl;
+    } while (dummychar != 'n');
+    return 0;
+}
