@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+class objectnum {
+    private:
+        int num;
+    	static int quantity;
+    public:
+    	objectnum() {
+    		num = ++quantity;
+    	}
+    	void shownum()  {
+    		cout << "Мой порядковый номер: " << num << endl;
+    	}
+    };
+int objectnum::quantity = 0;
+int main() {
+	setlocale(LC_ALL, "rus");
+	objectnum obj1, obj2, obj3;
+	obj1.shownum();
+	obj2.shownum();
+	obj3.shownum();
+	return 0;
+}
