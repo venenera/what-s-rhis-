@@ -1,0 +1,85 @@
+#include "stdafx.h"
+#include <iostream>
+#include <cmath>
+using namespace std;
+class fraction {
+    private:
+        int numer; //числитель
+        int denom; //знаменатель
+    public: 
+        fraction():numer(0), denom(0) {}
+        void putfraction() {
+            char dummychar;
+            cout << "Введите дробь" << endl;
+            cin >> numer >> dummychar >> denom;
+        }
+        void frsum(fraction a, fraction b) {
+            numer = a.numer * b.denom + a.denom * b.numer;
+            denom = a.denom * b.denom;
+        }
+        void frmult(fraction a, fraction b) {
+            numer = a.numer * b.denom;
+            denom = a.denom * b.denom;
+        }
+        void frsub(fraction a, fraction b) {
+            numer = a.numer * b.denom - a.denom * b.numer;
+            denom = a.denom * a.denom; 
+        }
+        void frdiv(fraction a, fraction b) {
+            numer = a.numer * b.denom;
+            denom = a.denomr * b.numer;
+        }
+    void fraction::lowterms() {      // сокращение дроби
+        long tnum, tden, temp, gcd;
+        tnum = labs(num);            // используем неотрицательные 
+        tden = labs(den);            // значения (нужен cmath)
+        if(tden == 0)                // проверка знаменателя на 0
+          { cout << "Недопустимый знаменатель!"; exit(1); }
+        else if(tnum == 0)           // проверка числителя на 0
+          { num = 0; den = 1; return; }
+        // нахождение наибольшего общего делителя
+        while(tnum != 0)
+        {
+          if(tnum < tden)            // если числитель больше знаменателя,
+            { temp = tnum; tnum = tden; tden = temp; } // меняем их местами
+          tnum = tnum - tden;        // вычитание
+        }
+        gcd = tden;                  // делим числитель и знаменатель на
+        num = num / gcd;             // полученный наибольший общий делитель
+        den = den / gcd;
+    }
+      void showfraction()const
+        { cout << numer << "/" << denom << endl; }
+};
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    fraction a, b, result;
+	char oper;
+    do {
+		fraction a, b, result;
+		cout << "Введите первую дробь: ";
+		a.putfraction;
+		cout << "Введите знак операции: ";
+		cin >> oper;
+		cout << "Введите первую дробь: ";
+		b.putfraction;
+		  switch (oper) {
+          case '+': 
+            result.fradd(a, b); break;
+          case '*': 
+            result.frmult(a, b); break;
+          case '-': 
+            result.frsub(a, b); break;
+          case '/': 
+            result.frdiv(a, b); break;
+        }
+        result.lowterms;
+        result.showfraction;
+		cout << "Ответ = " << result.num << '/' << result.denom;
+		cout << "\nПовторить (y/n)? ";
+		cin >> dummychar;
+	} while (dummychar != 'n'); //цикл закончится при вводе ‘n’, продолжится при вводе ‘y’
+    return 0;
+}
