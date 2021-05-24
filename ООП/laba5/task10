@@ -10,16 +10,16 @@ class angle {
         angle() {}
         angle(int deg, float min, char dir) : Degrees(deg), Minutes(min), Direction(dir) {}
         void putinfo() {
-        char dummychar, dir;
-        int deg;
-        float min;
-        cin >> deg >> dummychar >> min >> dummychar >> dir;
-        Degrees = deg;
-        Minutes = min;
-        Direction = dir;
-    }
-    void outputinfo() {
-    cout << Degrees << '\xF8' << Minutes << "' " << Direction << endl;
+            char dummychar, dir;
+            int deg;
+            float min;
+            cin >> deg >> dummychar >> min >> dummychar >> dir;
+            Degrees = deg;
+            Minutes = min;
+            Direction = dir;
+        }
+        void outputinfo() {
+        cout << Degrees << '\xF8' << Minutes << "' " << Direction << endl;
     }
 };
 class ship {
@@ -35,7 +35,7 @@ class ship {
         void outputinfo() {
             cout << "Корабль №" << num << endl << "Координаты: ";
             latitude.outputinfo();
-            cout << endl;
+            cout << " ";
             longitude.outputinfo();
             cout << endl;
         }
