@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -10,26 +9,26 @@ class fraction {
         fraction():numer(0), denom(0) {}
         void putfraction() {
             char dummychar;
-            cout << "Введите дробь" << endl;
             cin >> numer >> dummychar >> denom;
         }
-        void frsum(fraction a, fraction b) {
+        void frsum (fraction a, fraction b) { //сумма
             numer = a.numer * b.denom + a.denom * b.numer;
             denom = a.denom * b.denom;
         }
-        void frmult(fraction a, fraction b) {
+        void frmult (fraction a, fraction b) { //произведение
             numer = a.numer * b.denom;
             denom = a.denom * b.denom;
         }
-        void frsub(fraction a, fraction b) {
+        void frsub (fraction a, fraction b) { //разность
             numer = a.numer * b.denom - a.denom * b.numer;
             denom = a.denom * a.denom; 
         }
-        void frdiv(fraction a, fraction b) {
+        void frdiv (fraction a, fraction b) { //частное
             numer = a.numer * b.denom;
             denom = a.denom * b.numer;
         }
-    void fraction::lowterms() {      // сокращение дроби
+        //функция из учебника Лафоре
+        void lowterms() {      // сокращение дроби
         long tnum, tden, temp, gcd;
         tnum = labs(numer);            // используем неотрицательные 
         tden = labs(denom);            // значения (нужен cmath)
@@ -38,8 +37,7 @@ class fraction {
         else if(tnum == 0)           // проверка числителя на 0
           { numer = 0; denom = 1; return; }
         // нахождение наибольшего общего делителя
-        while(tnum != 0)
-        {
+        while(tnum != 0) {
           if(tnum < tden)            // если числитель больше знаменателя,
             { temp = tnum; tnum = tden; tden = temp; } // меняем их местами
           tnum = tnum - tden;        // вычитание
@@ -48,8 +46,7 @@ class fraction {
         numer = numer / gcd;             // полученный наибольший общий делитель
         denom = denom / gcd;
     }
-      void showfraction()const
-        { cout << numer << "/" << denom << endl; }
+      void showfraction()const { cout << "Ответ: " << numer << "/" << denom << endl; }
 };
 
 int main()
@@ -60,14 +57,14 @@ int main()
     do {
 		fraction a, b, result;
 		cout << "Введите первую дробь: ";
-		a.putfraction;
+		a.putfraction();
 		cout << "Введите знак операции: ";
 		cin >> dummychar;
 		cout << "Введите первую дробь: ";
-		b.putfraction;
+		b.putfraction();
 		  switch (dummychar) {
           case '+': 
-            result.fradd(a, b); break;
+            result.frsum(a, b); break;
           case '*': 
             result.frmult(a, b); break;
           case '-': 
@@ -75,9 +72,8 @@ int main()
           case '/': 
             result.frdiv(a, b); break;
         }
-        result.lowterms;
-        result.showfraction;
-		cout << "Ответ = " << result.num << '/' << result.denom;
+        result.lowterms();
+        result.showfraction();
 		cout << "\nПовторить (y/n)? ";
 		cin >> dummychar;
 	} while (dummychar != 'n'); //цикл закончится при вводе ‘n’, продолжится при вводе ‘y’
