@@ -1,66 +1,42 @@
 #include <iostream>
-using namespace std;
+ #include <cmath>
 
-class angle {
-private:
-	int Degrees;
-	float Minutes;
-	char Direction;
-public:
-    angle() {}
-	angle(int deg, float min, char dir) : Degrees(deg), Minutes(min), Direction(dir) {}
-	void putinfo() {
-		char dummychar, dir;
-		int deg;
-		float min;
-		cin >> deg >> dummychar >> min >> dummychar >> dir;
-		Degrees = deg;
-		Minutes = min;
-		Direction = dir;
-	}
-	void outputinfo() {
-		cout << Degrees << '\xF8' << Minutes << "' " << Direction << endl;
-	}
-};
-class ship {
-private:
-	int num;
-	static int quantity;
-	angle latitude;
-	angle longitude;
-public:
-	ship() {
-		num = ++quantity;
-	}
-    void outputinfo() {
-		cout << "Корабль №" << num << endl << "Координаты: ";
-		latitude.outputinfo();
-		cout << endl;
-		longitude.outputinfo();
-		cout << endl;
-	}
-	void putinfo() {
-		char dummychar;
-		latitude.putinfo();
-		cin >> dummychar;
-		longitude.putinfo();
-	}
-};
-int ship::quantity = 0;
-int main()
-{
-	setlocale(LC_ALL, "rus");
-	ship sh1, sh2, sh3;
-	cout << "Введите координаты кораблей:" << endl;
-	cout << "1: ";
-	sh1.putinfo();
-	cout << "2: ";
-	sh2.putinfo();
-	cout << "3: ";
-	sh3.putinfo();
-	cout << "Полученные данные:" << endl;
-	sh1.outputinfo();
-	sh2.outputinfo();
-	sh3.outputinfo();
-	return 0;
-}
+ using namespace std;
+
+ class fraction {
+ private:
+     int NUM, //числитель
+         DENOM; //знаменатель
+ public:
+     fraction():NUM(0), DENOM(0) {}
+     fraction(int num, int denom): NUM(num), DENOM(denom) {}
+     char dummychar;
+     void putfr () {
+         cin >> NUM >> dummychar >> DENOM;
+     }
+     void addfraction (fraction a, fraction b) {
+         NUM = a.NUM*b.DENOM + a.DENOM*b.NUM;
+         DENOM = a.DENOM*b.DENOM;
+     }
+     void outputfraction () {
+         cout << "Сумма дробей равна "<< NUM << "/" << DENOM << endl;
+     }
+ };
+
+ int main() // входная точка программы 
+ { 
+     setlocale(LC_ALL, "rus");
+     fraction a, b, result; //числители – a и c, знаменатели – b и d
+     char dummychar; /*переменная, которая будет содержать знак “/” дроби*/
+     do {
+         cout << "Введите первую дробь: ";
+         a.putfr();
+         cout << "Введите вторую дробь: ";
+         b.putfr();
+         result.addfraction(a,b);
+         result.outputfraction();
+         cout << "Повторить? (да - 'y', нет - 'n') ";
+ 		cin >> dummychar;
+ 		cout << "__________________________________" << endl;
+     } while (dummychar != 'n');
+     return 0;
