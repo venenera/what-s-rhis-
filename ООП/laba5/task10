@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+class angle {
+    private:
+        int Degrees;
+        float Minutes;
+        char Direction;
+    public:
+        angle() {}
+        angle(int deg, float min, char dir) : Degrees(deg), Minutes(min), Direction(dir) {}
+        void putinfo() {
+        char dummychar, dir;
+        int deg;
+        float min;
+        cin >> deg >> dummychar >> min >> dummychar >> dir;
+        Degrees = deg;
+        Minutes = min;
+        Direction = dir;
+    }
+    void outputinfo() {
+    cout << Degrees << '\xF8' << Minutes << "' " << Direction << endl;
+    }
+};
+class ship {
+    private:
+        int num;
+        static int quantity;
+        angle latitude;
+        angle longitude;
+    public:
+        ship() {
+        num = ++quantity;
+        }
+        void outputinfo() {
+            cout << "Корабль №" << num << endl << "Координаты: ";
+            latitude.outputinfo();
+            cout << endl;
+            longitude.outputinfo();
+            cout << endl;
+        }
+    void putinfo() {
+        char dummychar;
+        latitude.putinfo();
+        cin >> dummychar;
+        longitude.putinfo();
+    }
+};
+int ship::quantity = 0;
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    ship sh1, sh2, sh3;
+    cout << "Введите координаты кораблей:" << endl;
+    cout << "1: ";
+    sh1.putinfo();
+    cout << "2: ";
+    sh2.putinfo();
+    cout << "3: ";
+    sh3.putinfo();
+    cout << "Полученные данные:" << endl;
+    sh1.outputinfo();
+    sh2.outputinfo();
+    sh3.outputinfo();
+    return 0;
+}
