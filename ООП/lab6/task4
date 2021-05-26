@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+int maxint(int M[], int S) {
+	int MAX = 0;
+	for (int k = 1; k < S; k++)
+		if (M[k] > M[MAX]) 
+		    MAX = k;
+	return MAX;
+}
+int main() {
+	setlocale(LC_ALL, "rus");
+	int N = 0;
+	int M[100];
+	char dummychar;
+	do {
+		cout << "Введите целое число ";
+		cin >> M[N++];
+		cout << "Продолжить ввод? (y/n)? ";
+		cin >> dummychar;
+	} while (dummychar != 'n');
+	int MAX = maxint(M, N);
+	cout << "Максимальное значение: " << M[MAX];
+	return 0;
+}
