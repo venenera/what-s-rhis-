@@ -1,0 +1,64 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+class fraction {
+    private:
+        int numer; //числитель
+        int denom; //знаменатель
+    public: 
+        fraction():numer(0), denom(0) {}
+        void putfraction() {
+            char dummychar;
+            cin >> numer >> dummychar >> denom;
+        }
+        void frsum (fraction a, fraction b) { //сумма
+            numer = a.numer * b.denom + a.denom * b.numer;
+            denom = a.denom * b.denom;
+        }
+        void fraverage (fraction a, int N) {
+            denom = a.denom*N;
+        }
+        //функция из учебника Лафоре
+        void lowterms() {      // сокращение дроби
+        long tnum, tden, temp, gcd;
+        tnum = labs(numer);            // используем неотрицательные 
+        tden = labs(denom);            // значения (нужен cmath)
+        if(tden == 0)                // проверка знаменателя на 0
+          { cout << "Недопустимый знаменатель!"; exit(1); }
+        else if(tnum == 0)           // проверка числителя на 0
+          { numer = 0; denom = 1; return; }
+        // нахождение наибольшего общего делителя
+        while(tnum != 0) {
+          if(tnum < tden)            // если числитель больше знаменателя,
+            { temp = tnum; tnum = tden; tden = temp; } // меняем их местами
+          tnum = tnum - tden;        // вычитание
+        }
+        gcd = tden;                  // делим числитель и знаменатель на
+        numer = numer / gcd;             // полученный наибольший общий делитель
+        denom = denom / gcd;
+    }
+      void showfraction()const { cout << numer << "/" << denom << endl; }
+};
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    fraction M[100];
+    fraction sum, t;
+	char dummychar;
+	int N = 0;
+    do {
+		cout << "Введите дробь: ";
+		M[N++].putfraction();
+		cout << "Продолжить ввод? (да - 'y', нет - 'n')? ";
+		cin >> dummychar;
+	} while (dummychar != 'n'); //цикл закончится при вводе ‘n’, продолжится при вводе ‘y’
+    for (int i = 0; i < N; i++) {
+        t.frsum(M[i], M[i+1]);
+        i++;
+        sum.frsum(t, sum);
+    }
+    sum.fraverage(sum, N+1);
+    sum.showfraction();
+    return 0;
+}
