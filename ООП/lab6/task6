@@ -67,23 +67,22 @@ int main()
 		deck[k] = temp;
 	}
 	card newdesk[4][13];	
-	for (int i = 0, j = 0; j < 52; j++) {
+	for (int k = 0, j = 0; j < 52; j++) {
 		int buf = (j + 1) % 13;
-		newdesk[i][buf] = deck[j];
-		if (!buf) i++;
+		newdesk[k][buf] = deck[j];
+		if (!buf) k++;
 	}
 	//показываем перемешанную колоду
 	cout << "\nПеремешанная колода:\n";
-	for (int i = 0; i < 4; i++)
+	for (int k = 0; k < 4; k++)
 	{
-		cout << "Колода №" << (i + 1) << ":\n";
-		for (card c : newdesk[i])
+		cout << "Колода №" << (k + 1) << ":\n";
+		for (card c : newdesk[k])
 		{
 			c.display();
 			cout << ' ';
 		}
 		cout << endl;
 	}
-
 	return 0;
 }
