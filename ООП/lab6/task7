@@ -1,0 +1,36 @@
+#include  <iostream>
+#include <string>
+#include <stdlib.h>
+using namespace std;
+
+class Money {
+private:
+	long double SUM;
+public:
+	long double mstold(string sum) {
+		string result = "";
+		for (int k = 0; k < sum.length(); k++) {
+			if (isdigit(sum[k]) || sum[k] == ',') 
+				result += sum[k];
+		}
+		return stold(result.c_str());
+	}
+};
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	Money money;
+	string sum;
+	char dummychar;
+	do
+	{
+		cout << "Введите сумму: ";
+		cin >> sum;
+		cout << "Эквивалентное число типа long double: " << money.mstold(sum) << endl;
+		cout << "Продолжить(да - 'y', нет - 'n')? ";
+		cin >> dummychar;
+	}
+	while (dummychar != 'n');
+	return 0;
+}
