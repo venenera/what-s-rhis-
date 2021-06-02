@@ -2,78 +2,71 @@
 #include <string>
 #include <sstream>
 using namespace std;
-class money
+class bMoney
 {
 private:
-	long double _sum;
+	long double SUM;
 public:
-	money() {}
-	money(long double sum) : _sum(sum) {}
+	bMoney() {}
+	bMoney(long double sum) : SUM(sum) {}
 	long double mstold(string sum)
 	{
-		string res = "";
+		string result = "";
 		for (int i = 0; i < sum.length(); i++)
 		{
 			if (isdigit(sum[i]) || sum[i] == ',')
-				res += sum[i];
+				result += sum[i];
 		}
-		return stold(res.c_str());
+		return stold(result.c_str());
 	}
 
 
-	string ldtoms(long double sum)
+	string ldtoms(long double sum) //метод для преобразования числа типа long double в денежную строку
 	{
-		if (sum > 9999999999999990.00) return "";
-		ostringstream strs;
-		strs << fixed << sum;
-		string ustr = strs.str();
-		string newstr = "$";
-		int i, j;
-		for (i = 0; i < ustr.length() && (ustr[i] == '0' || ustr[i] == '.'); i++);
-		if (i > 1 && ustr[i - 1] == '.') i -= 2;
-		if (i == ustr.length()) return "$0,00";
-		for (j = ustr.length() - 1; j >= 0 && ustr[j] != '.'; j--);
-		j += 2;
-		for (; i <= j; i++)
-		{
-			if (i != 0 && i < j - 2 && (j - i + 1) % 3 == 0) 
-				newstr += '.';
-			newstr += ustr[i] == '.' ? ',' : ustr[i];
+		if (sum > 9999999999999990.00) return "Ошибка ввода";
+		ostringstream string_sum;
+		string_sum << fixed << sum;
+		string ustring = string_sum.str();
+		string newstringsum = "$";
+		int i, k;
+		for (i = 0; i < ustring.length() && (ustring[i] == '0' || ustring[i] == '.'); i++);
+		    if (i > 1 && ustring[i - 1] == '.') i = i - 2;
+		for (k = ustring.length() - 1; k >= 0 && ustring[k] != '.'; k--);
+		    k += 2;
+		for (; i <= k; i++) {
+			if (i != 0 && i < k - 2 && (k - i + 1) % 3 == 0) 
+				newstringsum += ',';
+			newstringsum += ustring[i] == ',' ? '.' : ustring[i];
 		}
-		return newstr;
+		return newstringsum;
 	}
 
-	void getmoney()
-	{
-		string str;
-		cout << "Введите денежную сумму:\n";
-		cin >> str;
-		_sum = mstold(str);
+	void getmoney() { //ввод 
+		string string_sum;
+		cout << "Введите денежную сумму: ";
+		cin >> string_sum;
+		SUM = mstold(string_sum);
 	}
 
-	void putmoney()
-	{
-		cout << "Денежная сумма равна: " << ldtoms(_sum) << endl;
+	void putmoney() { //вывод
+		cout << "Полученная сумма: " << ldtoms(SUM) << endl;
 	}
 
-	void add(money m)
-	{
-		_sum += m._sum;
+	void madd(bMoney money) { //сложение объектов типа bMoney
+		SUM += money.SUM;
 	}
 };
-int main()
-{
-	setlocale(LC_ALL, "");
-	money res(0), m;
-	long double s;
-	char ch;
-	do
-	{
-		m.getmoney();
-		res.add(m);
-		cout << "Продолжить(y/n)? ";
-		cin >> ch;
-	} while (ch != 'n');
-	res.putmoney();
+int main() {
+	setlocale(LC_ALL, "rus");
+	bMoney result(0), money;
+	long double sum;
+	char dummychar;
+	do {
+	    money.getmoney();
+	    result.madd(money);
+	    cout << "Повторить? (да - 'y', нет - 'n') ";
+	    cin >> dummychar;
+	}while (dummychar != 'n');
+	result.putmoney();
 	return 0;
 }
