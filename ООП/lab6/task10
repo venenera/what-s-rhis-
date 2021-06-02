@@ -1,0 +1,41 @@
+#include  <iostream>
+using namespace std;
+const int LIMIT = 6;
+class matrix {
+private:
+	int M[LIMIT][LIMIT];
+	int MAX_line;
+	int MAX_column;
+public:
+	matrix() {}
+	matrix(int mline, int mcolumn) : MAX_line(mline), MAX_column(mcolumn) {}
+	void putel(int ind_line, int ind_column, int el) {
+		if ((ind_line >= 0 && ind_line <= MAX_line - 1) && (ind_column >= 0 && ind_column <= MAX_column - 1)) {
+
+			M[ind_line][ind_column] = el;
+			cout << "Присвоенный элемент: " << el << endl;
+		}
+		else {
+			cout << ind_line << "|" << ind_column << "- индекс за границами массива" << endl;
+		}
+	}
+	int getel(int ind_line, int ind_column) {
+		if ((ind_line >= 0 && ind_line <= MAX_line - 1) && (ind_column >= 0 && ind_column <= MAX_column - 1)) {
+			return M[ind_line][ind_column];
+		}
+		    cout << ind_line << "|" << ind_column << "- индекс за границами массива" << endl;
+		exit(-1);
+	}
+};
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	matrix ml(3, 4);
+	int temp = 12345;
+	ml.putel(4, 8, temp);
+	temp = ml.getel(7, 4);
+	cout << "Полученный элемент: " << temp << endl;
+	ml.putel(2, 3, temp);
+	temp = ml.getel(3, 2);
+	return 0;
+}
