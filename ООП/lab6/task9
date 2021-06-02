@@ -1,0 +1,52 @@
+#include  <iostream>
+using namespace std;
+const int MAX = 4;
+
+class queue {
+private:
+	int M[MAX];
+public:
+	int head; //начало очереди
+	int tail; //конец очереди
+	queue() { //конструктор
+		head = 0;
+		tail = 0;
+	}
+	int get() { //метод для извлечения метода из очереди
+		if (head == tail)
+		{
+			cout << "Пустая очередь" << endl;
+			exit(0);
+		}
+		int result = M[tail];
+		tail = ++tail % MAX;
+		return result;
+	}
+	void put(int el) { //метод для помещения элемента в очередь
+		if (tail == (head++) % MAX) {
+			cout << "Заполненная очередь" << endl;
+			return;
+		}
+		M[head] = el;
+		head = ++head % MAX;
+		cout << "Помещенный элемент: " << el << endl;
+	}
+};
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	queue que;
+	que.put(11);
+	que.put(22);
+	cout << "Извлеченный из очереди элемент: " << que.get() << endl;
+	cout << "Извлеченный из очереди элемент: " << que.get() << endl;
+	que.put(33);
+	que.put(44);
+	cout << "Извлеченный из очереди элемент: " << que.get() << endl;
+	cout << "Извлеченный из очереди элемент: " << que.get() << endl;
+	que.put(55);
+	que.put(66);
+	cout << "Извлеченный из очереди элемент: " << que.get() << endl;
+	cout << "Извлеченный из очереди элемент: " << que.get() << endl;
+	return 0;
+}
