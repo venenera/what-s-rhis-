@@ -1,0 +1,37 @@
+#include  <iostream>
+using namespace std;
+const int LIMIT = 100;
+class safearray {
+private:
+	int M[LIMIT];
+public:
+	void putel(int ind, int el) {
+		if (ind <= LIMIT - 1 && ind >= 0) {
+			M[ind] = el;
+			cout << "Присовенный элемент: " << el << endl;
+		}
+		else {
+			cout << ind << " - индекс за границами массива" << endl;
+		}
+	}
+
+	int getel(int ind)
+	{
+		if (ind <= LIMIT - 1 && ind >= 0) {
+			return M[ind];
+		}
+		cout << ind << " - индекс за границами массива" << endl;
+		exit(-1);
+	}
+};
+int main() {
+	setlocale(LC_ALL, "rus");
+	safearray sal;          //описываем массив
+	int temp = 12345;       //описываем целое
+	sal.putel(7, temp);     //помещаем значение temp  в массив
+	temp = sal.getel(7.4);  //получаем значение из массива
+	cout << "Полученный элемент: " << temp << endl;
+	sal.putel(200, temp);   //помещаем значение 200 в массив
+	temp = sal.getel(200);  //получаем значение из массива
+	return 0;
+}
