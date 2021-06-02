@@ -4,7 +4,7 @@ int maxint(int M[], int S) {
 	int MAX = 0;
 	for (int k = 1; k < S; k++)
 		if (M[k] > M[MAX]) 
-		    MAX = k;
+            MAX = k;
 	return MAX;
 }
 int main() {
@@ -19,6 +19,7 @@ int main() {
 		cin >> dummychar;
 	} while (dummychar != 'n');
 	int MAX = maxint(M, N);
-	cout << "Максимальное значение: " << M[MAX];
+	cout << "Максимальное значение: " << M[MAX] << endl;
+ cout <<  "Индекс максимального значения: " << MAX;
 	return 0;
 }
