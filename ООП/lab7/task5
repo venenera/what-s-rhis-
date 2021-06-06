@@ -1,0 +1,82 @@
+#include <iostream>
+using namespace std;
+
+class Time {
+private:
+	int hour, min, sec;
+public:
+	Time() : hour(0), min(0), sec(0)
+	{}
+	Time(int HR, int MN, int SC) : hour(HR), min(MN), sec(SC)
+	{}
+	void display() {
+		cout << hour << ":" << min << ":" << sec;
+	}
+	Time operator + (Time userTime)   {
+		int SC = sec + userTime.sec; 
+		int MN = min + userTime.min;   
+		int HR = hour + userTime.hour; 
+		if (SC > 59)    {
+			SC -= 60; 
+			MN++;
+		}  
+		if (MN > 59) {
+			MN -= 60; 
+			HR++;
+		} 
+		return Time(HR, MN, SC);
+	}
+	Time operator++() {
+		if (++sec > 59) {
+			sec -= 60;
+			min++;
+		}
+		if (min > 59) {
+			min -= 60;
+			hour++;
+		}
+		return *this;
+	}
+	Time operator++(int) {
+		Time temp(hour, min, sec);
+		++(*this);
+		return temp;
+	}
+	Time operator--() {
+		if (--sec < 0) {
+			sec += 60; 
+			min--;
+		}
+		if (min < 0) {
+			min += 60; 
+			hour--;
+		}
+		return *this;
+	}
+	Time operator--(int) {
+		Time temp(hour, min, sec);
+		--(*this);
+		return temp;
+	}
+};
+
+int main() {
+	Time userT(2, 36, 40);
+	cout << "\nВремя: "; 
+	    userT.display();
+	cout << "\nВремя ++: "; 
+	    userT++.display();
+	cout << "\nВремя: "; 
+	    userT.display();
+	cout << "\n++Время:: "; 
+	    (++userT).display();
+	cout << "\nВремя: "; 
+	    userT.display();
+	cout << "\nВремя--: "; 
+	    userT--.display();
+	cout << "\nВремя: "; 
+	    userT.display();
+	cout << "\n--Время: "; 
+	    (--userT).display();
+	return 0;
+}
