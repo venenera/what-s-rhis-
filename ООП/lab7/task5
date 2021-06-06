@@ -9,7 +9,7 @@ public:
 	{}
 	Time(int HR, int MN, int SC) : hour(HR), min(MN), sec(SC)
 	{}
-	void display() {
+	void showtime() {
 		cout << hour << ":" << min << ":" << sec;
 	}
 	Time operator + (Time userTime)   {
@@ -63,20 +63,20 @@ public:
 int main() {
 	Time userT(2, 36, 40);
 	cout << "\nВремя: "; 
-	    userT.display();
+	    userT.showtime();
 	cout << "\nВремя ++: "; 
-	    userT++.display();
+	    userT++.showtime();
 	cout << "\nВремя: "; 
-	    userT.display();
+	    userT.showtime();
 	cout << "\n++Время:: "; 
-	    (++userT).display();
+	    (++userT).showtime();
 	cout << "\nВремя: "; 
-	    userT.display();
+	    userT.showtime();
 	cout << "\nВремя--: "; 
-	    userT--.display();
+	    userT--.showtime();
 	cout << "\nВремя: "; 
-	    userT.display();
+	    userT.showtime();
 	cout << "\n--Время: "; 
-	    (--userT).display();
+	    (--userT).showtime();
 	return 0;
 }
