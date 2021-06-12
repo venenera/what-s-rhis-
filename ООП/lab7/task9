@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+const int LIMIT = 100;   //array size
+class safearray {
+private:
+	int arr[LIMIT];
+	int loffset;
+	int roffset;
+public:
+	safearray() : loffset(0), roffset(LIMIT)
+	{}
+	safearray(int loffset, int roffset) : loffset(loffset), roffset(roffset)
+	{}
+	int& operator[](int n) {
+		if (n - loffset < 0 || n >= roffset) {
+			cout << "\nIndex out of bounds"; exit(1);
+		}
+		return arr[n - loffset];
+	}
+};
+int main() {
+	safearray sa1(90, 110);
+
+	for (int j = 90; j < 110; j++)
+		sa1[j] = j * 10;
+
+	for (int j = 90; j < 110; j++) {
+		int temp = sa1[j];
+		cout << "Element " << j << " is " << temp << endl;
+	}
+	return 0;
+}
