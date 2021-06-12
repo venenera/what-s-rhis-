@@ -47,11 +47,9 @@ public:
 		cin >> string_sum;
 		SUM = mstold(string_sum);
 	}
-
 	void putmoney() { //вывод
 		cout << "Полученная сумма: " << ldtoms(SUM) << endl;
 	}
-
 	bMoney operator+(bMoney m) {
 		return bMoney(SUM + m.SUM);
 	}
@@ -72,7 +70,7 @@ int main() {
 	setlocale(LC_ALL, "rus");
 	bMoney m1, m2(4512.34L);
 	long double s = 42.5L;
-	char ch;
+	char dummychar;
 	do
 	{
 		m1.getmoney();
