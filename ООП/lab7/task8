@@ -1,0 +1,125 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+using namespace std;
+
+class fraction {
+private:
+	int NUM;
+	int DENOM;
+public:
+	fraction()
+	{}
+	fraction(int dividend, int divider) : NUM(dividend), DENOM(divider) {
+		*this = lowterms(*this);
+	}
+	void makeout(string frstr) {
+		NUM = 0;
+		DENOM = 0;
+		int i, j;
+		int l = frstr.length();
+		for (i = 0; i < l && frstr[i] != '/'; i++);
+		for (j = i - 1; j >= 0; j--)
+			NUM += (frstr[j] - '0') * pow(10, i - j - 1);
+		for (j = l - 1; j > i; j--)
+			DENOM += (frstr[j] - '0') * pow(10, l - j - 1);
+	}
+	fraction operator+(fraction f) {
+		fraction fres;
+		fres.NUM = NUM * f.DENOM + DENOM * f.NUM;
+		fres.DENOM = DENOM * f.DENOM;
+		return lowterms(fres);
+	}
+	fraction operator-(fraction f) {
+		fraction fres;
+		fres.NUM = NUM * f.DENOM - DENOM * f.NUM;
+		fres.DENOM = DENOM * f.DENOM;
+		return lowterms(fres);
+	}
+	fraction operator*(fraction f)
+	{
+		fraction fres;
+		fres.NUM = NUM * f.NUM;
+		fres.DENOM = DENOM * f.DENOM;
+		return lowterms(fres);
+	}
+	fraction operator/(fraction f)
+	{
+		fraction fres;
+		fres.NUM = NUM * f.DENOM;
+		fres.DENOM = DENOM * f.NUM;
+		return lowterms(fres);
+	}
+	bool operator==(fraction f)
+	{
+		return NUM == f.NUM && DENOM == f.DENOM;
+	}
+	bool operator!=(fraction f)
+	{
+		return NUM != f.NUM || DENOM != f.DENOM;
+	}
+	void showfraction()
+	{
+		cout << "Ответ: " << NUM << '/' << DENOM << endl;
+	}
+	fraction lowterms(fraction f)
+	{
+		long tnum, tden, temp, gcd;
+		tnum = labs(f.NUM);
+		tden = labs(f.DENOM);
+		if (tden == 0) {
+			return f;
+		}
+		else if (tnum == 0) {
+			f.DENOM = 1;
+			return f;
+		}
+		while (tnum != 0) {
+			if (tnum < tden) {
+				temp = tnum;
+				tnum = tden;
+				tden = temp;
+			}
+			tnum -= tden;
+		}
+		gcd = tden;
+		f.NUM /= gcd;
+		f.DENOM /= gcd;
+		return f;
+	}
+};
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	fraction f1, f2, result;
+	char operand, dummychar;
+	string s1, s2;
+	do {
+		cout << "Введите первую дробь, операнд и вторую дробь: " << endl;
+		cin >> s1 >> operand >> s2;
+		f1.makeout(s1);
+		f2.makeout(s2);
+		if (f1 == fraction(0, 1) || f1 == fraction(1, 1) || f1 == fraction(0, 0)) break;
+		if (f2 == fraction(0, 1) || f2 == fraction(1, 1) || f2 == fraction(0, 0)) break;
+		switch (operand)
+		{
+		case '+':
+			result = f1 + f2;
+			break;
+		case '-':
+			result = f1 - f2;
+			break;
+		case '*':
+		    result = f1 * f2;
+			break;
+		case '/':
+			result = f1 / f2;
+			break;
+		}
+		result.showfraction();
+		cout << "Повторить? ('y'/'n')? ";
+		cin >> dummychar;
+	} while (dummychar != 'n');
+	return 0;
+}
