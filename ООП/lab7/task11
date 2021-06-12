@@ -1,0 +1,76 @@
+#include <iostream>
+using namespace std;
+const int PoundsToShilling = 20;
+const int ShillingToPennies = 12;
+class Sterling {
+private:
+	long POUNDS;
+	int SHILLINGS;
+	int PENCE;
+public:
+	Sterling() : POUNDS(0), SHILLINGS(0), PENCE(0) {}
+	Sterling(long pounds, int shillings, int pence) : POUNDS(pounds), SHILLINGS(shillings), PENCE(pence) {
+		*this = normalize(*this);
+	}
+	Sterling(double newPounds) {
+		POUNDS = (long)newPounds;
+		newPounds = (newPounds - POUNDS) * PoundsToShilling;
+		SHILLINGS = (int)newPounds;
+		newPounds = (newPounds - SHILLINGS) * ShillingToPennies;
+		PENCE = (int)newPounds;
+	}
+	Sterling operator+(Sterling strl) {
+		return Sterling((double)*this + (double)strl);
+	}
+	Sterling operator-(Sterling strl) {
+		return Sterling((double)*this - (double)strl);
+	}
+	Sterling operator*(double dbl) {
+		return Sterling((double)*this * dbl);
+	}
+	double operator/(Sterling strl) {
+		return (double)*this / (double)strl;
+	}
+	Sterling operator/(double dbl) {
+		return Sterling((double)*this * dbl);
+	}
+	operator double() {
+		return POUNDS + (SHILLINGS + PENCE / (double)ShillingToPennies) / (double)PoundsToShilling;
+	}
+	void get() {
+		char dummychar;
+		cin >> dummychar >> POUNDS >> dummychar >> SHILLINGS >> dummychar >> PENCE;
+	}
+	void put() {
+		cout << POUNDS << '.' << SHILLINGS << '.' << PENCE;
+	}
+	Sterling normalize(Sterling strl)
+	{
+		strl.SHILLINGS += strl.PENCE / ShillingToPennies;
+		strl.POUNDS += strl.SHILLINGS / PoundsToShilling;
+
+		strl.PENCE %= ShillingToPennies;		
+		strl.SHILLINGS %= PoundsToShilling;
+		return strl;
+	}
+};
+int main()
+{
+	setlocale(LC_ALL, "");
+	Sterling s1(46, 15, 11), s2;
+	double d = 4.4;
+	cout << "Введите сумму: ";
+	s2.get();
+	cout << "\ns1+s2 ";
+	(s1 + s2).put();
+	cout << "\ns1-s2 ";
+	(s1 - s2).put();
+	cout << "\ns1*d ";
+	(s1 * d).put();
+	cout << "\ns1/s2 ";
+	cout << (s1 / s2);
+	cout << "\ns1/d ";
+	(s1 / d).put();
+	return 0;
+}
+
