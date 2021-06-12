@@ -1,0 +1,93 @@
+#include  <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+class bMoney
+{
+private:
+	long double SUM;
+public:
+	bMoney() {}
+	bMoney(long double sum) : SUM(sum) {}
+	long double mstold(string sum)
+	{
+		string result = "";
+		for (int i = 0; i < sum.length(); i++)
+		{
+			if (isdigit(sum[i]) || sum[i] == ',')
+				result += sum[i];
+		}
+		return stold(result.c_str());
+	}
+
+
+	string ldtoms(long double sum) //метод для преобразования числа типа long double в денежную строку
+	{
+		if (sum > 9999999999999990.00) return "Ошибка ввода";
+		ostringstream string_sum;
+		string_sum << fixed << sum;
+		string ustring = string_sum.str();
+		string newstringsum = "$";
+		int i, k;
+		for (i = 0; i < ustring.length() && (ustring[i] == '0' || ustring[i] == '.'); i++);
+		    if (i > 1 && ustring[i - 1] == '.') i = i - 2;
+		for (k = ustring.length() - 1; k >= 0 && ustring[k] != '.'; k--);
+		    k += 2;
+		for (; i <= k; i++) {
+			if (i != 0 && i < k - 2 && (k - i + 1) % 3 == 0) 
+				newstringsum += ',';
+			newstringsum += ustring[i] == ',' ? '.' : ustring[i];
+		}
+		return newstringsum;
+	}
+
+	void getmoney() { //ввод 
+		string string_sum;
+		cout << "Введите денежную сумму: ";
+		cin >> string_sum;
+		SUM = mstold(string_sum);
+	}
+
+	void putmoney() { //вывод
+		cout << "Полученная сумма: " << ldtoms(SUM) << endl;
+	}
+
+	bMoney operator+(bMoney m) {
+		return bMoney(SUM + m.SUM);
+	}
+	bMoney operator-(bMoney m) {
+		return bMoney(SUM - m.SUM);
+	}
+	bMoney operator*(long double ld) {
+		return bMoney(SUM * ld);
+	}
+	long double operator/(bMmoney m) {
+		return SUM / m.SUM;
+	}
+	bMoney operator/(long double ld) {
+		return bMoney(SUM / ld);
+	}
+};
+int main() {
+	setlocale(LC_ALL, "rus");
+	bMoney m1, m2(4512.34L);
+	long double s = 42.5L;
+	char ch;
+	do
+	{
+		m1.getmoney();
+		cout << "m1 + m2: ";
+		(m1 + m2).putmoney();
+		cout << "m1 - m2: ";
+		(m1 - m2).putmoney();
+		cout << "m1 * s: ";
+		(m1 * s).putmoney();
+		cout << "m1 / m2: ";
+		cout << (m1 / m2) << endl;
+		cout << "m1 / s: ";
+		(m1 / s).putmoney();
+	    cout << "Повторить? (да - 'y', нет - 'n') ";
+	    cin >> dummychar;
+	}while (dummychar != 'n');
+	return 0;
+}
