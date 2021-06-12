@@ -57,8 +57,8 @@ public:
 int main()
 {
 	setlocale(LC_ALL, "");
-	Sterling s1(46, 15, 11), s2;
-	double d = 4.4;
+	Sterling s1(10, 20, 30), s2;
+	double d = 1.8;
 	cout << "Введите сумму: ";
 	s2.get();
 	cout << "\ns1+s2 ";
@@ -73,4 +73,3 @@ int main()
 	(s1 / d).put();
 	return 0;
 }
-
