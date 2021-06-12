@@ -1,0 +1,32 @@
+#include <cmath>
+#include <iostream>
+using namespace std;
+const float Pi = 3.14159;
+class Polar {
+private:
+	float RADIUS;
+	float ANGLE;
+public:
+	Polar() : RADIUS(0), ANGLE(0) {}
+	Polar(float radius, float angle) : RADIUS(radius), ANGLE(angle) {}
+	Polar operator+(Polar polar) {
+		float x = RADIUS * cos(ANGLE) + polar.RADIUS * cos(polar.ANGLE);
+		float y = RADIUS * sin(ANGLE) + polar.RADIUS * sin(polar.ANGLE);
+		float tan = y / x;
+		return Polar(sqrt(x*x + y*y), tan < 0 ? Pi + atan(tan) : atan(tan));
+	}
+	void show() {
+		cout << "Радиус: " << RADIUS << endl << "Угол: " << ANGLE;
+	}
+};
+int main() {
+	setlocale(LC_ALL, "rus");
+	Polar polar1(12, Pi/2), polar2(7, Pi);
+	cout << "polar1 " << endl;
+	polar1.show();
+	cout << "polar2 " << endl;
+	polar2.show();
+	cout << "Сумма " << endl;
+	(polar1 + polar2).show();
+	return 0;
+}
