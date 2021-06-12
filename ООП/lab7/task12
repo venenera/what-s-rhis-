@@ -1,0 +1,42 @@
+#include <iostream>
+#include "Sterling.h"
+#include "money.h"
+using namespace std;
+
+//Sterling.cpp
+//Sterling::operator money()
+//{
+//	return bMoney((double)*this * 50.0);
+//}
+
+//bMoney.cpp
+//bMoney::operator Sterling()
+//{
+//	return Sterling(SUM / 50);
+//}
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	money m;
+	Sterling s;
+	char dummychar;
+	do {
+		cout << "Желаемая валюта (s/d): ";
+		cin >> dummychar;
+		switch (dummychar) {
+		case 's':
+			s.get();
+			((bMoney)s).putmoney();
+			break;
+		case 'd':
+			m.getmoney();
+			((Sterling)m).put();
+			break;
+		default: cout << "Ошибка символа\n";
+			break;
+		}
+		cout << "Повторить? (да - 'y', нет - 'n') ";
+	    cin >> dummychar;
+	} while (dummychar != 'n');
+	return 0;
+}
