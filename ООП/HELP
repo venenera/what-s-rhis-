@@ -1,0 +1,38 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+	string s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25, s26, s27, s28, s29, s30;
+	cin >> s1;
+	cin >> s2;
+	cin >> s3;
+	cin >> s4;
+	cin >> s5;
+	cin >> s6;
+	cin >> s7;
+	cin >> s8;
+	cin >> s9;
+	cin >> s10;
+	cin >> s11;
+	cin >> s12;
+	cin >> s13;
+	cin >> s14;
+	cin >> s15;
+	cin >> s16;
+	cin >> s17;
+	cin >> s18;
+	cin >> s19;
+	cin >> s20;
+	cin >> s21;
+	cin >> s22;
+	cin >> s23;
+	cin >> s24;
+	cin >> s25;
+	cin >> s26;
+	cin >> s27;
+	cin >> s28;
+	cin >> s29;
+	cin >> s30;
+	return 0;
+}
