@@ -1,0 +1,78 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class publication {
+private:
+	string title;
+	float price;
+public:
+	void getdata() {
+		cout << "\nВведите название: "; cin >> title;
+		cout << "Введите цену: "; cin >> price;
+	}
+	void putdata() const {
+		cout << "\nНазвание: " << title;
+		cout << "\nЦена: " << price;
+	}
+};
+class sales {
+private:
+	enum { MONTHS = 3 };
+	float salesArr[MONTHS];
+public:
+	void getdata();
+	void putdata() const;
+};
+void sales::getdata() {
+	cout << "Введите общую стоимость проданных книг за последние 3 месяца\n";
+	for (int j = 0; j < MONTHS; j++)
+	{
+		cout << "Месяц " << j + 1 << ": ";
+		cin >> salesArr[j];
+	}
+}
+void sales::putdata() const {
+	for (int j = 0; j < MONTHS; j++)
+	{
+		cout << "\nПродажи" << j + 1 << ": ";
+		cout << salesArr[j];
+	}
+}
+
+class disk : private publication, private sales {
+private:
+	enum type {DVD, CD } _type;
+public:
+	void getdata() {
+		publication::getdata();
+		char ch;
+		cout << "Введите тип диска(c/d): "; 
+		cin >> ch;
+		switch (ch)
+		{
+		case 'c': _type = CD; break;
+		case 'd': _type = DVD; break;
+		default: cout << "Неизвестный тип.\n"; break;
+		}
+		sales::getdata();
+	}
+	void putdata() const {
+		publication::putdata();
+		cout << "\nТип диска: ";
+		switch (_type)
+		{
+		case CD: cout << "CD"; break;
+		case DVD: cout << "DVD"; break;
+		default: cout << "Неизвестный тип.\n"; break;
+		}
+		sales::putdata();
+	}
+};
+int main() {
+    setlocale(LC_ALL, "rus");
+	disk d;
+	d.getdata();
+	d.putdata();
+	cout << endl;
+	return 0;
+}
