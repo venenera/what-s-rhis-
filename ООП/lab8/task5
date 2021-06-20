@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+const int LEN = 80;
+class employee{
+private:
+	char name[LEN];
+	unsigned long number;
+public:
+	void getdata() {
+		cout << "Enter last name: "; cin >> name;
+		cout << "\nEnter number: ";      cin >> number;
+	}
+	void putdata() const {
+		cout << "\nName: " << name;
+		cout << "\nNumber: " << number;
+	}
+};
+class employee2 : private employee {
+private:
+	double compensation;
+	enum payperiod { Hourly, Weekly, Monthly } period;
+public:
+	void getdata() {
+		employee::getdata();
+		cout << "\nEnter compensation: "; cin >> compensation;
+		char ch;
+		cout << "\nEnter pay period(h/w/m): "; cin >> ch;
+		switch (ch)
+		{
+		case 'h': period = Hourly; break;
+		case 'w': period = Weekly; break;
+		case 'm': period = Monthly; break;
+		default: cout << "Неизвестный тип.\n"; break;
+		}
+
+	}
+	void putdata() const {
+		employee::putdata();
+		cout << "\nCompensation: "; cout << compensation;
+		cout << "\nDisk type: ";
+		switch (period)
+		{
+		case Hourly: cout << "Hourly"; break;
+		case Weekly: cout << "Weekly"; break;
+		case Monthly: cout << "Monthly"; break;
+		default: cout << "Неизвестный тип.\n"; break;
+		}
+	}
+};
+int main() {
+    setlocale(LC_ALL, "");
+	employee2 e;
+	e.getdata();
+	e.putdata();
+	cout << endl;
+	return 0;
+}
