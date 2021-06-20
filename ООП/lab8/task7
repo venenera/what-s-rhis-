@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+class Counter {
+protected:
+	unsigned int count; 
+public:
+	Counter() : count(0) {}
+	Counter(int c) : count(c) {}
+	unsigned int get_count() const {
+		return count;
+	}
+	Counter operator++() {
+		return Counter(++count);
+	}
+};
+class CountDn : public Counter {
+public:
+	CountDn() : Counter() { }
+	CountDn(int c) : Counter(c) { }
+	CountDn operator--() {
+		return CountDn(--count);
+	}
+};
+class CountPost : public CountDn {
+public:
+	CountPost() : CountDn() { }
+	CountPost(int c) : CountDn(c) { }
+	CountPost operator++(int)  {
+		CountPost temp = *this;
+		++count;
+		return temp;
+	}
+	CountPost operator--(int) {
+		CountPost temp = *this;
+		--count;
+		return temp;
+	}
+};
+int main() {
+	CountPost c1;
+	CountPost c2(100);
+	cout << "\nc1   = " << c1.get_count();
+	cout << "\nc2   = " << c2.get_count();
+	cout << "\nc1++ = " << c1++.get_count();
+	cout << "\nc2-- = " << c2--.get_count();
+	cout << "\nc1   = " << c1.get_count();
+	cout << "\nc2   = " << c2.get_count();
+	cout << endl;
+	return 0;
+}
