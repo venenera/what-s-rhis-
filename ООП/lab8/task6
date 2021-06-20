@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+const int LIMIT = 100;
+class safearay {
+private:
+	int arr[LIMIT];
+public:
+	int& operator[](int n) {
+		if (n < 0 || n >= LIMIT) {
+			cout << "Index out of bounds"; exit(1);
+		}
+		return arr[n];
+	}
+};
+class custarray : public safearay {
+private:
+	int lborder;
+	int uborder;
+public:
+	custarray(int lowborder, int upperborder) : lborder(lowborder), uborder(upperborder){}
+	int& operator[](int n) {
+		return safearay::operator[](n >= uborder ? LIMIT : n - lborder);
+	}
+};
+int main() {
+	custarray arr(100, 115);
+	for (int i = 100; i < 115; i++)
+		arr[i] = i * 10;
+	for (int i = 100; i <= 115; i++)
+		cout << "arr[" << i << "] = " << arr[i] << endl;
+	return 0;
+}
