@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+int strcmp(const char *str1, const char *str2) {
+	for (int i = 0; i < strlen(str1); i++)
+	{
+		if(*(str1 + i) == *(str2 + i)) continue;
+		return *(str1 + i) > *(str2 + i) ? 1 : -1;
+	}
+	return 0;
+}
+int main() {
+	const char *ch1 = "String1";
+	const char *ch2 = "String2";
+	const char *ch3 = "AString";
+	const char *ch4 = "astring";
+	const char *ch5 = "astring";
+	cout << strcmp(ch1, ch2) << endl;
+	cout << strcmp(ch1, ch3) << endl;
+	cout << strcmp(ch3, ch4) << endl;
+	cout << strcmp(ch4, ch5) << endl;
+	return 0;
+}
