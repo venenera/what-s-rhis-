@@ -1,0 +1,73 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+class String {
+protected:
+	enum { SZ = 80 };
+	char str[SZ];
+public:
+	String() {
+		str[0] = '\0';
+	}
+	String(const char s[]) {
+		strcpy_s(str, s);
+	}
+	void display() const {
+		cout << str;
+	}
+	operator char*() {
+		return str;
+	}
+};
+class Pstring : public String {
+public:
+	Pstring(const char s[]) {
+		if (strlen(s) > SZ - 1) {
+			int j;
+			for (j = 0; j < SZ - 1; j++)
+				str[j] = s[j];
+			str[j] = '\0';
+		}
+		else
+			strcpy_s(str, s);
+	}
+};
+class Pstring2 : public Pstring {
+public:
+	Pstring2(const char s[]) : Pstring(s) {}
+	Pstring2 left(int number) {
+		Pstring2 substr = "";
+		int i;
+		for (i = 0; i < number; i++)
+			substr[i] = str[i];
+		substr[i] = '\0';
+		return substr;
+	}
+	Pstring2 right(int number) {
+		Pstring2 substr = "";
+		int i;
+		int strend = SZ;
+		for (i = 0; i < SZ; i++)
+			if (str[i] == '\0') strend = i;
+		for (i = 0; i < number; i++)
+			substr[i] = str[i + strend - number];
+		substr[i] = '\0';
+		return substr;
+	}
+	Pstring2 mid(int position, int number) {
+		Pstring2 substr = "";
+		int i;
+		for (i = 0; i < SZ - position && i < number; i++)
+			substr[i] = str[i + position];
+		substr[i] = '\0';
+		return substr;
+	}
+};
+int main() {
+	Pstring2 s1 = "Left right";
+	cout << "\nleft = "; s1.left(4).display();
+	cout << "\nright = "; s1.right(5).display();
+	cout << "\nmid = "; s1.mid(2, 4).display();
+	cout << endl;
+	return 0;
+}
