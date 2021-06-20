@@ -1,0 +1,28 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+const int SIZE = 5;
+
+void addarrays(float *m1, float *m2, float *m3, int size) {
+	for (int i = 0; i < size; i++)
+		*(m3 + i) = *(m1 + i) + *(m2 + i);
+}
+int main() {
+	float m1[SIZE], m2[SIZE], m3[SIZE];
+	for (int i = 0; i < SIZE; i++)
+	{
+		*(m1 + i) = i * i - i * 2.4;
+		cout << setw(8) << *(m3 + i) << " ";
+	}
+	cout << endl;
+	for (int i = 0; i < SIZE; i++)
+	{
+		*(m2 + i) = i * 5 / 2.3;
+		cout << setw(8) << (*m2 + i) << " ";
+	}
+	cout << endl;
+	addarrays(m1, m2, m3, SIZE);
+	for (int i = 0; i < SIZE; i++)
+		cout << setw(8) << *(m3 + i) << " ";
+	return 0;
+}
